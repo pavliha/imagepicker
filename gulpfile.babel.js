@@ -13,31 +13,53 @@ import vinylSource from 'vinyl-source-stream'
 const $ = gulpLoadPlugins();
 
 const JS = {
-    src: 'resources/js/main.js',
+    watch: 'resources/js/**/*.jsx',
+    src: 'resources/js/main.jsx',
     dest: 'public/js'
 };
 
 const STYLES = {
-    src: 'resources/styles/main.styl',
+    src: 'resources/styles/**/*.styl',
     dest: 'public/styles'
 };
 
 
 const IMAGES = {
     src: 'resources/images/**/*',
-    dest: 'public/styles'
+    dest: 'public/images'
+};
+const BLADE = {
+    src:"resources/**/*.blade.php"
 };
 
 
-gulp.task('watch', ()=> {
+gulp.task('watch', ['browserify', 'styles'], ()=> {
+
     $.livereload.listen();
-    gulp.watch(JS.src, ['browserify']);
+    gulp.watch(JS.watch, ['browserify']);
     gulp.watch(IMAGES.src, ['images']);
     gulp.watch(STYLES.src, ['styles']);
+    gulp.watch(BLADE.src, ['blade']);
+});
+
+
+
+
+
+
+
+
+
+
+gulp.task("blade",()=>{
+    gulp.src(BLADE.src)
+        .pipe($.livereload())
 });
 
 gulp.task("browserify", ()=> {
-    return browserify({
+
+    return $.sourcemaps.init()
+        .pipe(browserify({
         entries: [JS.src],
         debug: true
     })
@@ -45,11 +67,11 @@ gulp.task("browserify", ()=> {
             console.error(err);
             this.emit('end')
         })
-        .transform("babelify", {presets: ["es2015", "react"]})
-        .bundle()
+
+        .transform("babelify")
+        .bundle())
         .pipe(vinylSource('main.js')) // generated output file
         .pipe(vinylBuffer())         // required for sourcemaps
-        .pipe($.sourcemaps.init())
         .pipe($.sourcemaps.write("."))
         .pipe(gulp.dest(JS.dest))
         .pipe($.livereload());
@@ -74,7 +96,7 @@ gulp.task("rollup", ()=> {
 });
 
 gulp.task('images', () => {
-    gulp.src('resources/images/**/*')
+    gulp.src(IMAGES.src)
         .pipe($.cache($.imagemin({
             progressive: true,
             interlaced: true
@@ -87,7 +109,7 @@ gulp.task("styles", ()=> {
     gulp.src(STYLES.src)
         .pipe($.stylus())
         .pipe($.postcss([
-            autoprefixer({browsers: ['last 1 version']}),
+            autoprefixer({browsers: ['last 2 versions']}),
             lost()
         ]))
 

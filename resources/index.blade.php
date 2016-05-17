@@ -1,14 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Hi</title>
-  <link rel="stylesheet" href="/styles/main.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Web Starter Kit">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <meta name="theme-color" content="#2F3BA2">
+
+    <title>Image Picker</title>
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-<main id="app">
 
-</main>
+<header class="header">
+    <img class="header_img" src="images/landscape.jpg">
+</header>
+
+<section class="section_source-image">
+    <div class="block_source-image">
+        <form>
+            <input type="file" class="form_hidden-file" style="display: none">
+            <script> function PickTheFile(){ $(".form_hidden-file").click();}</script>
+            <button class=" button
+             button--pipaluk
+             button--inverted
+             button--round-l
+             button--text-thick
+             button--text-upper" onclick="PickTheFile()" >Выбрать фото</button>
+
+        </form>
+        {{--<img class="source-image" src="/images/photo.jpg">--}}
+    </div>
+
+</section>
+
+<section class="section_handled-image">
+    <div class="block_handled-image">
+        <img src="/images/photo.jpg" width="100%">
+    </div>
+    <div class="block_handled-image">
+        <img src="/images/photo.jpg" width="100%">
+    </div>
+    <div class="block_handled-image">
+        <img src="/images/photo.jpg" width="100%">
+    </div>
+    <div class="block_handled-image">
+        <img src="/images/photo.jpg" width="100%">
+    </div>
+    <div class="block_handled-image">
+        <img src="/images/photo.jpg" width="100%">
+    </div>
+    <div class="block_handled-image">
+        <img src="/images/photo.jpg" width="100%">
+    </div>
+    <div class="block_handled-image">
+        <img src="/images/photo.jpg" width="100%">
+    </div>
+    <div class="block_handled-image">
+        <img src="/images/photo.jpg" width="100%">
+    </div>
+    <div class="block_handled-image">
+        <img src="/images/photo.jpg" width="100%">
+    </div>
+
+</section>
+<footer>
+
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.slim.min.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>
