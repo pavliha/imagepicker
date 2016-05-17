@@ -28,19 +28,9 @@
     <img class="header_img" src="images/landscape.jpg">
 </header>
 
-<section class="section_source-image">
-    <div class="block_source-image">
-        <form>
-            <input type="file" class="form_hidden-file" style="display: none">
-            <script> function PickTheFile(){ $(".form_hidden-file").click();}</script>
-            <button class=" button
-             button--pipaluk
-             button--inverted
-             button--round-l
-             button--text-thick
-             button--text-upper" onclick="PickTheFile()" >Выбрать фото</button>
+<section class="section_source-image" >
+    <div class="block_source-image flexbox-container" id="ImageLoading">
 
-        </form>
         {{--<img class="source-image" src="/images/photo.jpg">--}}
     </div>
 
@@ -79,7 +69,13 @@
 <footer>
 
 </footer>
+
+
+
+{{--//////***** SCRIPTS *****///////--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.slim.min.js"></script>
 <script src="/js/main.js"></script>
+
+
 </body>
 </html>
