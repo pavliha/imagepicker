@@ -9,13 +9,11 @@ import lost from 'lost';
 import browserify from "browserify";
 import vinylBuffer from 'vinyl-buffer';
 import vinylSource from 'vinyl-source-stream';
-import ts from "gulp-typescript";
-//import tsfy from "tsfy";
+import debowerify from "debowerify";
 
 
 const $ = gulpLoadPlugins();
 
-const tsProject = ts.createProject("tsconfig.json");
 
 const TS = {
     dest: "public/js"
@@ -37,7 +35,11 @@ const IMAGES = {
     dest: 'public/images'
 };
 const BLADE = {
-    src:"resources/**/*.blade.php"
+    src: "resources/**/*.blade.php"
+};
+const FONTS = {
+    src: "resources/fonts/**/*",
+    dest: 'public/fonts'
 };
 
 
@@ -48,17 +50,17 @@ gulp.task('watch', ['browserify', 'styles'], ()=> {
     gulp.watch(IMAGES.src, ['images']);
     gulp.watch(STYLES.src, ['styles']);
     gulp.watch(BLADE.src, ['blade']);
+    gulp.watch(FONTS.src, ['fonts']);
 });
 
 
-gulp.task("typescript",()=>{
-    return tsProject.src()
-        .pipe($.typescript(tsProject))
-        .js.pipe(gulp.dest(TS.dest))
-});
-
-gulp.task("blade",()=>{
+gulp.task("blade", ()=> {
     gulp.src(BLADE.src)
+        .pipe($.livereload())
+});
+gulp.task("fonts", ()=> {
+    gulp.src(FONTS.src)
+        .pipe(gulp.dest(FONTS.dest))
         .pipe($.livereload())
 });
 
@@ -66,16 +68,17 @@ gulp.task("browserify", ()=> {
 
     return $.sourcemaps.init()
         .pipe(browserify({
-        entries: [JS.src],
-        debug: true
+            entries: [JS.src],
+            debug: true
         })
-        .on('error', (err) => {
-            console.error(err);
-            this.emit('end')
-        })
+            .on('error', (err) => {
+                console.error(err);
+                this.emit('end')
+            })
 
-        .transform("babelify")
-        .bundle())
+            .transform("babelify")
+            .transform(debowerify)
+            .bundle())
         .on('error', (err) => {
             console.error(err);
             this.emit('end')

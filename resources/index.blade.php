@@ -36,34 +36,8 @@
 
 </section>
 
-<section class="section_handled-image">
-    <div class="block_handled-image">
-        <img src="/images/photo.jpg" width="100%">
-    </div>
-    <div class="block_handled-image">
-        <img src="/images/photo.jpg" width="100%">
-    </div>
-    <div class="block_handled-image">
-        <img src="/images/photo.jpg" width="100%">
-    </div>
-    <div class="block_handled-image">
-        <img src="/images/photo.jpg" width="100%">
-    </div>
-    <div class="block_handled-image">
-        <img src="/images/photo.jpg" width="100%">
-    </div>
-    <div class="block_handled-image">
-        <img src="/images/photo.jpg" width="100%">
-    </div>
-    <div class="block_handled-image">
-        <img src="/images/photo.jpg" width="100%">
-    </div>
-    <div class="block_handled-image">
-        <img src="/images/photo.jpg" width="100%">
-    </div>
-    <div class="block_handled-image">
-        <img src="/images/photo.jpg" width="100%">
-    </div>
+<section class="section_handled-image" id="Thumbnails">
+
 
 </section>
 <footer>
@@ -73,7 +47,8 @@
 
 
 {{--//////***** SCRIPTS *****///////--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+<script src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.js"></script>
 <script src="/js/main.js"></script>
 
 

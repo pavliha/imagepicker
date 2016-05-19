@@ -114,7 +114,7 @@ a:focus {
 .codrops-icon {
   display: inline-block;
   margin: 0.5em;
-  padding: 0 0;
+  padding: 0em 0;
   width: 1.5em;
   text-decoration: none;
 }
@@ -124,7 +124,7 @@ a:focus {
   font-weight: normal;
   font-style: normal;
   font-variant: normal;
-  font-family: 'codropsicons', sans-serif;
+  font-family: 'codropsicons';
   line-height: 1;
   speak: none;
   -webkit-font-smoothing: antialiased;
@@ -1144,7 +1144,7 @@ table {
   border: 2px solid;
   border-radius: inherit;
   -webkit-clip-path: polygon(0% 0%, 0% 100%, 35% 100%, 35% 60%, 65% 60%, 65% 100%, 100% 100%, 100% 0%);
-  clip-path: url("../#clipBox");
+  clip-path: url("../index.html#clipBox");
   transform: translate3d(0, 100%, 0) translate3d(0, -2px, 0);
   transform-origin: 50% 100%;
 }
@@ -1490,7 +1490,7 @@ table {
   src: url("../fonts/vicons/vicons.eot?#iefix1u5j7r") format('embedded-opentype'), url("../fonts/vicons/vicons.woff?1u5j7r") format('woff'), url("../fonts/vicons/vicons.ttf?1u5j7r") format('truetype'), url("../fonts/vicons/vicons.svg?1u5j7r#vicons") format('svg');
 }
 .icon {
-  font-family: 'vicons', sans-serif;
+  font-family: 'vicons';
   font-size: inherit;
   font-weight: normal;
   font-style: normal;
@@ -1706,7 +1706,7 @@ body {
   z-index: 3;
   margin: 0 auto;
   width: 70%;
-  height: 600px;
+  height: 500px;
   padding: 5px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   background-color: #fafafa;
@@ -1727,13 +1727,16 @@ body {
       flex-wrap: wrap;
 }
 .block_handled-image {
-  background-color: #77908f;
+  overflow: hidden;
   margin: 5px;
   border-radius: 2px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  padding: 3px;
-  width: 360px;
-  height: 240px;
+  border: 3px;
+  width: 350px;
+  height: 300px;
+}
+.block_handled-image_img {
+  max-width: 100%;
 }
 .flexbox-container {
   display: -ms-flexbox;

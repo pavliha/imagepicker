@@ -26,7 +26,7 @@ body {
   z-index 3;
   margin 0 auto;
   width 70%;
-  height 600px;
+  height 500px;
   padding 5px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   background-color #fafafa;
@@ -48,23 +48,22 @@ body {
 }
 
 .block_handled-image {
-
-  background-color #77908f;
+  overflow hidden;
+  //background-color #77908f;
   margin 5px;
   border-radius: 2px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   //background-color #fafafa
-  padding 3px;
-  width 360px;
-  height 240px;
+  border 3px;
+  width 350px;
+  height 300px;
+}
+.block_handled-image_img {
+  max-width 100%;
 }
 
 .flexbox-container {
   display: flex;
   align-items: center;
   justify-content center;
-}
-
---hidden {
-  display none;
 }
