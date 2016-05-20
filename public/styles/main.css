@@ -1692,8 +1692,11 @@ body {
   margin: 0;
   background-color: #fafafa;
 }
-.header_img {
+.header {
+  background: #00c6ff; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #00c6ff, #0072ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   width: 100%;
+  height: 500px;
   box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 2px 5px rgba(0,0,0,0.11);
 }
 .section_source-image {

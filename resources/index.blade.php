@@ -20,13 +20,12 @@
     <meta name="theme-color" content="#2F3BA2">
 
     <title>Image Picker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
 
-<header class="header">
-    <img class="header_img" src="images/landscape.jpg">
-</header>
+<header class="header"></header>
 <section id="main">
 
 </section>
@@ -36,6 +35,7 @@
 
 
 {{--//////***** SCRIPTS *****///////--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 <script src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.js"></script>
 <script src="/js/main.js"></script>

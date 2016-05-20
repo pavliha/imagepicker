@@ -6,14 +6,19 @@ class Thumbnails extends React.Component {
         super(props);
 
     }
-    render(){
+
+    render() {
 
         console.log(this.props.photos);
 
         return (
             <div>
-                {this.props.photos.map((photo)=>{
-                    return <img src={photo} key={photo} className="block_handled-image_img"/>
+                {this.props.photos.map((photo)=> {
+                    return (
+                        <div className="block_handled-image">
+                            <img src={photo} key={photo} className="block_handled-image_img"/>
+                        </div>)
+
                 })}
             </div>
         )

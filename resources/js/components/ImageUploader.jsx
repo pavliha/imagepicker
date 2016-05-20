@@ -71,10 +71,8 @@ class ImageUploader extends React.Component {
             <form>
                 <input type="file" className="hidden" onChange={this.handleFormSubmit.bind(this)}
                        accept="image/x-png, image/gif, image/jpeg" name="image"/>
-                <button onClick={this.clickTheFileForm}
-                        className=" button button--pipaluk button--inverted
-                                    button--round-l button--text-thick button--text-upper">
-                    {this.state.buttonName}
+                <button className="btn waves-effect waves-light">{this.state.buttonName}
+                    <i className="material-icons right">send</i>
                 </button>
             </form>
         );
