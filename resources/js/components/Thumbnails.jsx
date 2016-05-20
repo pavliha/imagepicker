@@ -8,11 +8,8 @@ class Thumbnails extends React.Component {
     }
 
     render() {
-
-        console.log(this.props.photos);
-
         return (
-            <div>
+            <div className="flexbox-container">
                 {this.props.photos.map((photo)=> {
                     return (
                         <div key={photo} className="block_handled-image">
@@ -20,6 +17,7 @@ class Thumbnails extends React.Component {
                         </div>)
 
                 })}
+
             </div>
         )
     }

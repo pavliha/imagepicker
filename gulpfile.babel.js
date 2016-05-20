@@ -10,6 +10,11 @@ import browserify from "browserify";
 import vinylBuffer from 'vinyl-buffer';
 import vinylSource from 'vinyl-source-stream';
 import debowerify from "debowerify";
+import babel from 'rollup-plugin-babel';
+import jsx from 'rollup-plugin-jsx'
+import nodeResolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
+
 
 
 const $ = gulpLoadPlugins();
@@ -90,7 +95,33 @@ gulp.task("browserify", ()=> {
         .pipe($.livereload());
 
 });
+gulp.task("browserify:uglifyjs", ()=> {
 
+    return $.sourcemaps.init()
+        .pipe(browserify({
+            entries: [JS.src],
+            debug: true
+        })
+            .on('error', (err) => {
+                console.error(err);
+                this.emit('end')
+            })
+
+            .transform("babelify")
+            .transform(debowerify)
+            .bundle())
+        .on('error', (err) => {
+            console.error(err);
+            this.emit('end')
+        })
+        .pipe(vinylSource('main.js')) // generated output file
+        .pipe(vinylBuffer())         // required for sourcemaps
+        .pipe($.uglify())
+        .pipe($.sourcemaps.write("."))
+        .pipe(gulp.dest(JS.dest))
+        .pipe($.livereload());
+
+});
 gulp.task("rollup", ()=> {
 
     gulp.src(JS.src, {read: false})
@@ -130,37 +161,45 @@ gulp.task("styles", ()=> {
         .pipe($.livereload());
 });
 
-gulp.task("styles:production", ()=> {
+gulp.task("styles:minify", ()=> {
     gulp.src(STYLES.src)
+        .pipe($.stylus())
         .pipe($.postcss([
             autoprefixer({browsers: ['last 1 version']}),
             cssnano(),
             lost()
         ]))
-        .pipe($.stylus())
+        .pipe($.cleanCss())
         .pipe(gulp.dest(STYLES.dest))
 });
-
+gulp.task("html",()=>{
+   gulp.src("storage/framework/views/**/*.php")
+       .pipe($.htmlmin({collapseWhitespace: true}));
+    gulp.dest("storage/framework/views")
+});
 gulp.task('rollup:es6', () => {
     return rollup({
-        entry: JS.src,
-        sourceMap: true,
+        entry: "resources/js/main.jsx",
         plugins: [
             babel({
-                presets: ["react", 'es2015-rollup'],
-                babelrc: false,
+                babelrc:false,
                 exclude: 'node_modules/**'
-            })
+            }),
+            jsx( {factory: 'React.createElement'}),
+            nodeResolve({ jsnext: true }),
+            commonjs()
+
         ]
     }).then(bundle => {
         return bundle.write({
+            sourceMap: 'inline',
             format: "iife",
-            dest: JS.dest
+            dest: "public/js/main.js"
         })
     });
 });
 
-
+gulp.task("production",['browserify:uglifyjs',"styles:minify","html"]);
 
 
 

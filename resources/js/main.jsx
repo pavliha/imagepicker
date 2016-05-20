@@ -10,10 +10,6 @@ import injectTapEventPlugin from "react-tap-event-plugin"
 injectTapEventPlugin();
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
-
-
-
 
 
 class Main extends React.Component {
@@ -22,33 +18,34 @@ class Main extends React.Component {
 
         super(props);
         this.state = {
-            photos:null
-        }
+            photos: null
+        };
     }
 
+    handleFileChange() {
+        this.setState({photos: null});
+    }
     handlePhotosLoad(response) {
+        this.setState({photos: response})
 
-        this.setState({photos:response})
     }
-
     render() {
 
         return (
             <div>
                 <section className="section_source-image">
                     <ImageUploader
+                        onFormChange={this.handleFileChange.bind(this)}
                         onPhotosLoad={this.handlePhotosLoad.bind(this)}
                         className="block_source-image flexbox-container"
                     />
                 </section>
 
 
-
                 {(() => {
-                    if (this.state.photos) {
+                    if (this.state.photos != null) {
                         return <Thumbnails photos={this.state.photos} className="section_handled-image"/>
                     }
-
                 })()}
 
 

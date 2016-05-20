@@ -38,8 +38,8 @@
 
 
 {{--//////***** SCRIPTS *****///////--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
-<script src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+<script src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.min.js"></script>
 <script src="/js/main.js"></script>
 
 
