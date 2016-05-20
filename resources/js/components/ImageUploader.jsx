@@ -1,6 +1,10 @@
+/**
+ * Created by pavel on 5/20/16.
+ */
+
 import React from "react";
 import ReactDOM from "react-dom";
-import PhotoSender from "./../modules/PhotoSender.js";
+
 class ImageLoading extends React.Component {
 
 
@@ -8,9 +12,15 @@ class ImageLoading extends React.Component {
 
         super(props);
         this.state ={
-            buttonName:"Выбрать фото"
+            buttonName:"Выбрать фото",
+            response:""
         }
 
+    }
+
+    handleResponse(res){
+
+       this.setState({"response":res});
     }
 
     handleProgress(e) {
@@ -38,6 +48,7 @@ class ImageLoading extends React.Component {
         let photoSender = new PhotoSender(formData);
 
         photoSender.send()
+            .done(this.handleResponse.bind(this))
             .uploadProgress(this.handleProgress.bind(this))
 
     }
@@ -63,10 +74,8 @@ class ImageLoading extends React.Component {
                                     button--round-l button--text-thick button--text-upper">
                     {this.state.buttonName}
                 </button>
-
+                <Thumbnails data={this.state.response}/>
             </form>
         );
     }
 }
-
-export default ImageLoading;

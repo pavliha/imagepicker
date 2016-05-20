@@ -27,23 +27,12 @@
 <header class="header">
     <img class="header_img" src="images/landscape.jpg">
 </header>
-
-<section class="section_source-image" >
-    <div class="block_source-image flexbox-container" id="ImageLoading">
-
-        {{--<img class="source-image" src="/images/photo.jpg">--}}
-    </div>
-
-</section>
-
-<section class="section_handled-image" id="Thumbnails">
-
+<section id="Main">
 
 </section>
 <footer>
 
 </footer>
-
 
 
 {{--//////***** SCRIPTS *****///////--}}
