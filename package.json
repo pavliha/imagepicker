@@ -43,6 +43,7 @@
     "gulp-typescript": "^2.13.4",
     "gulp-uglify": "^1.5.3",
     "lost": "^6.7.2",
+    "material-ui": "^0.15.0",
     "postcss": "^5.0.21",
     "postcss-font-magician": "^1.4.0",
     "react": "^15.0.2",

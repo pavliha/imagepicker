@@ -15,8 +15,8 @@ class Thumbnails extends React.Component {
             <div>
                 {this.props.photos.map((photo)=> {
                     return (
-                        <div className="block_handled-image">
-                            <img src={photo} key={photo} className="block_handled-image_img"/>
+                        <div key={photo} className="block_handled-image">
+                            <img src={photo} className="block_handled-image_img"/>
                         </div>)
 
                 })}

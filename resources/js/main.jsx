@@ -1,14 +1,19 @@
 /**
  * Created by pavel on 5/12/16.
  */
+
 import React from "react";
 import ReactDOM from "react-dom";
 import Thumbnails from "./components/Thumbnails.jsx";
-
 import ImageUploader from "./components/ImageUploader.jsx";
 
+
+
+
 class Main extends React.Component {
+
     constructor(props) {
+
         super(props);
         this.state = {
             photos:null
@@ -16,10 +21,12 @@ class Main extends React.Component {
     }
 
     handlePhotosLoad(response) {
+
         this.setState({photos:response})
     }
 
     render() {
+
         return (
             <div>
                 <section className="section_source-image">
@@ -34,6 +41,7 @@ class Main extends React.Component {
                 })()}
             </div>
         )
+
     }
 }
 

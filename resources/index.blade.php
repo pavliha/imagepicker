@@ -15,12 +15,15 @@
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Web Starter Kit">
+    <meta name="theme-color" content="#2F3BA2">
     <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
 
-    <meta name="theme-color" content="#2F3BA2">
+
 
     <title>Image Picker</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Styles -->
     <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
@@ -35,7 +38,6 @@
 
 
 {{--//////***** SCRIPTS *****///////--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
 <script src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.js"></script>
 <script src="/js/main.js"></script>
