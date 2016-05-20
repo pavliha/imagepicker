@@ -5,6 +5,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PhotoSender from "~/resources/js/modules/PhotoSender";
+import RaisedButton from 'material-ui/RaisedButton';
+
 class ImageUploader extends React.Component {
 
 
@@ -71,9 +73,9 @@ class ImageUploader extends React.Component {
             <form>
                 <input type="file" className="hidden" onChange={this.handleFormSubmit.bind(this)}
                        accept="image/x-png, image/gif, image/jpeg" name="image"/>
-                <button onClick={this.clickTheFileForm.bind(this)} className="">
+                <RaisedButton onClick={this.clickTheFileForm.bind(this)} className="">
                     {this.state.buttonName}
-                </button>
+                </RaisedButton>
             </form>
         );
     }

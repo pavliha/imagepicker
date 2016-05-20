@@ -29,7 +29,7 @@
 <body>
 
 <header class="header"></header>
-<section id="main">
+<section id="app">
 
 </section>
 <footer>
