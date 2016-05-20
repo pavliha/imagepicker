@@ -4,34 +4,36 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-
-class ImageLoading extends React.Component {
+import PhotoSender from "~/resources/js/modules/PhotoSender";
+class ImageUploader extends React.Component {
 
 
     constructor(props) {
 
         super(props);
-        this.state ={
-            buttonName:"Выбрать фото",
-            response:""
+        this.state = {
+            buttonName: "Выбрать фото",
+            response: ""
         }
 
     }
 
-    handleResponse(res){
+    handleResponse(res) {
 
-       this.setState({"response":res});
+        this.setState({buttonName: "Готово!"});
+        setTimeout(()=> {
+            this.setState({buttonName: "Выбрать фото"});
+        }, 3000);
+        this.props.onPhotosLoad(res);
     }
 
     handleProgress(e) {
         if (e.lengthComputable) {
-            var percentage = Math.round((e.loaded*100) / e.total);
-            this.setState({button:percentage+"%"});
+            var percentage = Math.round((e.loaded * 100) / e.total);
+            this.setState({button: percentage + "%"});
 
-            if(percentage === 100){
-                this.setState({buttonName:"Готово!"});
-                setTimeout(()=>{this.setState({buttonName:"Выбрать фото"});},3000);
-
+            if (percentage === 100) {
+                this.setState({buttonName: "Идет обработка!"});
             }
 
         }
@@ -74,8 +76,9 @@ class ImageLoading extends React.Component {
                                     button--round-l button--text-thick button--text-upper">
                     {this.state.buttonName}
                 </button>
-                <Thumbnails data={this.state.response}/>
             </form>
         );
     }
 }
+
+export default ImageUploader;

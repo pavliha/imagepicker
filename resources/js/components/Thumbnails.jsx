@@ -7,9 +7,16 @@ class Thumbnails extends React.Component {
 
     }
     render(){
-        return this.props.data.map((url)=>{
-            return <img src={url} className="block_handled-image_img"/>
-        })
+
+        console.log(this.props.photos);
+
+        return (
+            <div>
+                {this.props.photos.map((photo)=>{
+                    return <img src={photo} key={photo} className="block_handled-image_img"/>
+                })}
+            </div>
+        )
     }
 }
 export default Thumbnails;

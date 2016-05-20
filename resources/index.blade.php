@@ -27,7 +27,7 @@
 <header class="header">
     <img class="header_img" src="images/landscape.jpg">
 </header>
-<section id="Main">
+<section id="main">
 
 </section>
 <footer>
