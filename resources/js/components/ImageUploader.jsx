@@ -27,16 +27,6 @@ class ImageUploader extends React.Component {
             width: '100%',
             opacity: 0,
         },
-        LinearProgress: {
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            left: 0,
-            width: '100%',
-            height: "35px",
-            opacity: 0,
-        },
     };
 
     constructor(props) {
@@ -46,13 +36,6 @@ class ImageUploader extends React.Component {
             buttonName: " Выбрать фото ",
             buttonActive: true,
             response: "",
-            progress: {
-                complete: 0,
-                display: false,
-                mode: "determinate"
-
-            }
-
         }
 
     }
@@ -68,12 +51,6 @@ class ImageUploader extends React.Component {
             this.setState({
                 buttonName: " Выбрать фото ",
                 buttonActive: true,
-                progress:{
-                    mode: "indeterminate",
-                    complete: 0,
-                    display:false,
-
-                }
             });
         }, 3000);
         this.props.onPhotosLoad(res);
@@ -84,19 +61,13 @@ class ImageUploader extends React.Component {
             var percentage = Math.round((e.loaded * 100) / e.total);
 
             this.setState({
-                progress: {
-                    complete: percentage,
-                    display: true
-                }
+                buttonName: percentage+"%",
             });
 
             if (percentage === 100) {
                 this.setState({
                     buttonName: "Обработка... ",
                     buttonActive: false,
-                    progress: {
-                        mode: "indeterminate"
-                    }
                 });
             }
 
@@ -122,16 +93,9 @@ class ImageUploader extends React.Component {
 
     render() {
 
-        if(this.state.progress.display){
-            this.styles.LinearProgress.opacity = 1;
-        }
-        console.log(this.state.progress);
         return (
             <div>
-                <LinearProgress mode={this.state.progress.mode}
-                                style={this.styles.LinearProgress}
-                                value={this.state.progress.complete}
-                />
+
                 <form>
                     <RaisedButton
                         label={this.state.buttonName}
