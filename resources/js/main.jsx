@@ -33,21 +33,19 @@ class Main extends React.Component {
 
         return (
             <div>
-                <section className="section_source-image">
+                <section>
                     <ImageUploader
+                        className="ImageUploader"
                         onFormChange={this.handleFileChange.bind(this)}
                         onPhotosLoad={this.handlePhotosLoad.bind(this)}
-                        className="block_source-image flexbox-container"
                     />
                 </section>
 
-
                 {(() => {
                     if (this.state.photos != null) {
-                        return <Thumbnails photos={this.state.photos} className="section_handled-image"/>
+                        return <Thumbnails photos={this.state.photos} className="Thumbnails"/>
                     }
                 })()}
-
 
             </div>
         )

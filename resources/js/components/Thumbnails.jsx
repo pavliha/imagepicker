@@ -9,13 +9,12 @@ class Thumbnails extends React.Component {
 
     render() {
         return (
-            <div className="flexbox-container">
+            <div className={this.props.className}>
                 {this.props.photos.map((photo)=> {
                     return (
-                        <div key={photo} className="block_handled-image">
-                            <img src={photo} className="block_handled-image_img"/>
+                        <div key={photo} className="Thumbnail">
+                            <img src={photo} className="Thumbnail_img"/>
                         </div>)
-
                 })}
 
             </div>

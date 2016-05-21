@@ -336,246 +336,69 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-@font-face {
-  font-family: 'vicons';
-  font-weight: normal;
-  font-style: normal;
-  src: url("../fonts/vicons/vicons.eot?1u5j7r");
-  src: url("../fonts/vicons/vicons.eot?#iefix1u5j7r") format('embedded-opentype'), url("../fonts/vicons/vicons.woff?1u5j7r") format('woff'), url("../fonts/vicons/vicons.ttf?1u5j7r") format('truetype'), url("../fonts/vicons/vicons.svg?1u5j7r#vicons") format('svg');
-}
-.icon {
-  font-family: 'vicons';
-  font-size: inherit;
-  font-weight: normal;
-  font-style: normal;
-  line-height: inherit;
-  position: relative;
-  display: inline-block;
-  transform: translate(0, 0);
-  vertical-align: middle;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.icon::before {
-  display: inline-block;
-  width: 100%;
-}
-.icon-box:before {
-  content: '\e600';
-}
-.icon-write:before {
-  content: '\e601';
-}
-.icon-clock:before {
-  content: '\e602';
-}
-.icon-reply:before {
-  content: '\e603';
-}
-.icon-reply-all:before {
-  content: '\e604';
-}
-.icon-forward:before {
-  content: '\e605';
-}
-.icon-flag:before {
-  content: '\e606';
-}
-.icon-search:before {
-  content: '\e607';
-}
-.icon-trash:before {
-  content: '\e608';
-}
-.icon-envelope:before {
-  content: '\e609';
-}
-.icon-bubble:before {
-  content: '\e60a';
-}
-.icon-bubbles:before {
-  content: '\e60b';
-}
-.icon-user:before {
-  content: '\e60c';
-}
-.icon-users:before {
-  content: '\e60d';
-}
-.icon-cloud:before {
-  content: '\e60e';
-}
-.icon-download:before {
-  content: '\e60f';
-}
-.icon-upload:before {
-  content: '\e610';
-}
-.icon-rain:before {
-  content: '\e611';
-}
-.icon-sun:before {
-  content: '\e612';
-}
-.icon-moon:before {
-  content: '\e613';
-}
-.icon-bell:before {
-  content: '\e614';
-}
-.icon-folder:before {
-  content: '\e615';
-}
-.icon-pin:before {
-  content: '\e616';
-}
-.icon-sound:before {
-  content: '\e617';
-}
-.icon-microphone:before {
-  content: '\e618';
-}
-.icon-camera:before {
-  content: '\e619';
-}
-.icon-image:before {
-  content: '\e61a';
-}
-.icon-cog:before {
-  content: '\e61b';
-}
-.icon-calendar:before {
-  content: '\e61c';
-}
-.icon-book:before {
-  content: '\e61d';
-}
-.icon-map-marker:before {
-  content: '\e61e';
-}
-.icon-store:before {
-  content: '\e61f';
-}
-.icon-support:before {
-  content: '\e620';
-}
-.icon-tag:before {
-  content: '\e621';
-}
-.icon-heart:before {
-  content: '\e622';
-}
-.icon-video-camera:before {
-  content: '\e623';
-}
-.icon-trophy:before {
-  content: '\e624';
-}
-.icon-cart:before {
-  content: '\e625';
-}
-.icon-eye:before {
-  content: '\e626';
-}
-.icon-cancel:before {
-  content: '\e627';
-}
-.icon-chart:before {
-  content: '\e628';
-}
-.icon-target:before {
-  content: '\e629';
-}
-.icon-printer:before {
-  content: '\e62a';
-}
-.icon-location:before {
-  content: '\e62b';
-}
-.icon-bookmark:before {
-  content: '\e62c';
-}
-.icon-monitor:before {
-  content: '\e62d';
-}
-.icon-cross:before {
-  content: '\e62e';
-}
-.icon-plus:before {
-  content: '\e62f';
-}
-.icon-left:before {
-  content: '\e630';
-}
-.icon-up:before {
-  content: '\e631';
-}
-.icon-browser:before {
-  content: '\e632';
-}
-.icon-windows:before {
-  content: '\e633';
-}
-.icon-switch:before {
-  content: '\e634';
-}
-.icon-dashboard:before {
-  content: '\e635';
-}
-.icon-play:before {
-  content: '\e636';
-}
-.icon-fast-forward:before {
-  content: '\e637';
-}
-.icon-next:before {
-  content: '\e638';
-}
-.icon-refresh:before {
-  content: '\e639';
-}
-.icon-film:before {
-  content: '\e63a';
-}
-.icon-home:before {
-  content: '\e63b';
-}
 body {
   padding: 0;
   margin: 0;
   background-color: #fafafa;
 }
 .header {
-  background: #00c6ff; /* fallback for old browsers */ /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #00c6ff, #0072ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #00c6ff; /* fallback for old browsers */
+  background: linear-gradient(50deg, #616161, #62534c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   width: 100%;
-  height: 500px;
+  height: 60px;
   box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 2px 5px rgba(0,0,0,0.11);
 }
-.section_source-image {
-  position: relative;
-  margin-top: -20%;
-  text-align: center;
-  width: 100%;
-}
-.block_source-image {
+.ImageUploader {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin: 0 20px;
+  margin-top: 40px;
   z-index: 3;
-  margin: 0 auto;
-  width: 70%;
-  height: 600px;
-  padding: 5px;
+  max-width: 55%;
+  min-height: 500px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   background-color: #fafafa;
   border-radius: 2px;
 }
-.source-image {
-  border-radius: 2px;
-  background-color: #77908f;
-  width: 900px;
+.ImageUploader form {
+  height: 481px;
+  width: 100%;
+  background-color: #0b97c4;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
-.section_handled-image {
-  margin-top: 10%;
+.ImageUploader_img {
+  text-align: center;
+  width: 100%;
+}
+.ImageUploader_status {
+  margin-top: auto;
+  width: 100%;
+  color: #fafafa;
+  padding: 5px;
+  text-align: right;
+  background: linear-gradient(50deg, #616161, #62534c);
+}
+.Thumbnails {
+  background: #f3f2f4;
+  margin: 10px;
+  margin-top: 40px;
   -ms-flex-pack: center;
       justify-content: center;
   display: -ms-flexbox;
@@ -583,17 +406,18 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
-.block_handled-image {
-  overflow: hidden;
+.Thumbnail {
   margin: 5px;
+  overflow: hidden;
   border-radius: 2px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   border: 3px;
-  width: 350px;
+  width: 300px;
 }
-.block_handled-image_img {
+.Thumbnail_img {
   max-width: 100%;
 }
+/**************Helpers*******************/
 .flexbox-container {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
