@@ -1,4 +1,9 @@
 {
   presets:["es2015","react"],
-  plugins: ['transform-runtime', 'babel-root-import', 'transform-async-to-generator' ,'transform-do-expressions' ,'transform-class-properties']
+  plugins: [
+   'transform-runtime',
+   'babel-root-import',
+   'transform-async-to-generator',
+   'transform-class-properties',
+   ]
 }

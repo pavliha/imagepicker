@@ -3,8 +3,15 @@
  */
 
 class PhotoSender {
-    constructor(formData) {
-        this.formData = formData;
+
+    makeForm(inputFile){
+        let formData = new window.FormData();
+        formData.append("photo", inputFile);
+        return formData;
+    }
+
+    constructor(inputFile) {
+        this.formData = this.makeForm(inputFile);
         this.res = null;
         this.percent = null;
     }

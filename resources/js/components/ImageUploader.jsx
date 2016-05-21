@@ -5,28 +5,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PhotoSender from "~/resources/js/modules/PhotoSender";
-import RaisedButton from 'material-ui/RaisedButton';
-import Snackbar from 'material-ui/Snackbar';
-
+import ImageButton from './ImageButton.jsx';
+import StatusBar from "./StatusBar.jsx";
 
 class ImageUploader extends React.Component {
-
-    styles = {
-        button: {
-            padding: 0,
-        },
-        ImageInput: {
-            background: "#0072ff",
-            cursor: 'pointer',
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            left: 0,
-            width: '100%',
-            opacity: 0,
-        },
-    };
 
     constructor(props) {
 
@@ -37,7 +19,33 @@ class ImageUploader extends React.Component {
             response: "",
             message: '',
             open: false,
+            previewImage: false
         }
+
+    }
+
+    showTheForm() {
+        return (
+            <form>
+                <ImageButton
+                    disabled={!this.state.buttonActive}
+                    onChange={this.handleInputFileChange.bind(this)}>
+                    {this.state.buttonName}
+                </ImageButton>
+            </form>
+        )
+    }
+
+    showThePreviewImage() {
+        return (<img src={this.state.previewImage} className="ImageUploader_previewImage"/>);
+    }
+
+    readTheImage(inputFile) {
+        let reader = new window.FileReader();
+        reader.onload = ()=> {
+            this.setState({previewImage: reader.result});
+        };
+        reader.readAsDataURL(inputFile);
 
     }
 
@@ -81,90 +89,46 @@ class ImageUploader extends React.Component {
 
     handleInputFileChange(e) {
 
-        this.props.onFormChange();
         e.preventDefault();
+
         let inputFile = e.target.files[0];
 
-        let reader = new window.FileReader();
-        reader.onload = ()=> {
-            this.setState({previewImage:reader.result});
-        };
-        reader.readAsDataURL(inputFile);
+        this.readTheImage(inputFile);
 
-        let formData = new window.FormData();
-        formData.append("photo", inputFile);
-
-        let photoSender = new PhotoSender(formData);
+        let photoSender = new PhotoSender(inputFile);
 
         photoSender.send()
-            .done(this.handleResponse.bind(this))
             .uploadProgress(this.handleProgress.bind(this))
+            .done(this.handleResponse.bind(this));
 
+        this.props.onFormChange();
     }
 
     render() {
 
         var preview;
 
-        if(!this.state.previewImage){
-
-            preview = ()=>{
-                return (
-                    <form>
-                        <RaisedButton
-                            onTouchTap={this.handleTouchTap}
-                            label={this.state.buttonName}
-                            labelPosition="before"
-                            style={this.styles.button}
-                            disabled={!this.state.buttonActive}
-                            accept="image/x-png, image/gif, image/jpeg" name="image">
-
-                            <input
-                                type="file"
-                                style={this.styles.ImageInput}
-                                onChange={this.handleInputFileChange.bind(this)}
-                            />
-                        </RaisedButton>
-                        <Snackbar
-                            open={this.state.open}
-                            message={this.state.message}
-                            autoHideDuration={4000}
-                            onRequestClose={this.handleRequestClose}
-                        />
-                    </form>
-                )
-            }
-
-        }
-        else{
-            preview = ()=> {
-                return <img src={this.state.previewImage} className="previewImage"/>
-            }
-
-        }
-
 
         return (
             <div className={this.props.className}>
 
-                {preview()}
+                {(()=> {
+                    if (!this.state.previewImage) {
+                        return this.showTheForm();
+                    } else {
+                        return this.showThePreviewImage();
+                    }
+                })()}
+                {(()=> {
+                    if(this.state.previewImage) {
+                        return (
+                            <StatusBar className="ImageUploader_StatusBar">
+                                {this.state.buttonName}
+                            </StatusBar>
+                        )
+                    }
+                })()}
 
-                <footer className="ImageUploader_status">
-                    <RaisedButton
-                        onTouchTap={this.handleTouchTap}
-                        label={this.state.buttonName}
-                        labelPosition="before"
-                        style={this.styles.button}
-                        disabled={!this.state.buttonActive}
-                        accept="image/x-png, image/gif, image/jpeg" name="image">
-
-                        <input
-                            type="file"
-                            style={this.styles.ImageInput}
-                            onChange={this.handleInputFileChange.bind(this)}
-                        />
-                    </RaisedButton>
-                </footer>
             </div>
         );
     }
