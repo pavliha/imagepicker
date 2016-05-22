@@ -18,8 +18,6 @@
     <meta name="theme-color" content="#2F3BA2">
     <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
 
-
-
     <title>Image Picker</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -28,7 +26,7 @@
 </head>
 <body>
 
-<header class="header"></header>
+
 <section id="app">
 
 </section>
@@ -38,7 +36,12 @@
 
 
 {{--//////***** SCRIPTS *****///////--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous">
+</script>
+
+{{--<script src="/bower_components/jquery/dist/jqueryAjax.js"></script>--}}
 <script src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.min.js"></script>
 <script src="/js/main.js"></script>
 

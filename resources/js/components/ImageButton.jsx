@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import RaisedButton from 'material-ui/RaisedButton';
-
+import browser from "detect-browser";
 class ImageButton extends React.Component {
 
     styles = {
@@ -19,6 +19,9 @@ class ImageButton extends React.Component {
             width: '100%',
             opacity: 0,
         },
+        FirefoxImageInput: {
+            textAlign:"center"
+        },
     };
 
     constructor(props) {
@@ -27,7 +30,17 @@ class ImageButton extends React.Component {
     }
 
     render() {
-        return(
+
+        if (browser.name === "firefox") {
+            return (
+                <input
+                    type="file"
+                    style={this.styles.FirefoxImageInput}
+                    onChange={this.props.onChange}
+                />
+            )
+        }
+        return (
             <RaisedButton
                 label={this.props.children}
                 labelPosition="before"

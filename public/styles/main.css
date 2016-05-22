@@ -348,7 +348,16 @@ body {
   height: 60px;
   box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 2px 5px rgba(0,0,0,0.11);
 }
+.Card_ImageUploader {
+  margin: 0 20px;
+  margin-top: 40px;
+  width: 450px;
+  z-index: 3;
+  min-width: 60px;
+  min-height: 200px;
+}
 .ImageUploader {
+  position: relative;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -359,15 +368,8 @@ body {
       align-items: center;
   -ms-flex-line-pack: center;
       align-content: center;
-  margin: 0 20px;
-  margin-top: 40px;
-  width: 37%;
-  z-index: 3;
-  min-width: 60px;
   min-height: 200px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   border-radius: 2px;
-  background-color: #363433;
 }
 .ImageUploader form {
   width: 100%;
@@ -383,17 +385,20 @@ body {
       align-content: center;
 }
 .ImageUploader_previewImage {
-  opacity: 0.4;
   text-align: center;
   width: 100%;
 }
 .ImageUploader_StatusBar {
-  margin-top: auto;
+  height: 100%;
   width: 100%;
-  color: #fafafa;
-  padding: 5px;
+  margin-top: auto;
+  color: rgba(0,0,0,0.74);
   text-align: center;
-  background: linear-gradient(50deg, #393939, #2e2321);
+  background: linear-gradient(50deg, rgba(46,35,33,0.5), rgba(46,35,33,0.5));
+}
+.ImageUploader_StatusBar .status {
+  color: #fff;
+  font-size: 16pt;
 }
 .Thumbnails {
   background: #f3f2f4;
@@ -412,19 +417,32 @@ body {
   border-radius: 2px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   border: 3px;
-  width: 300px;
+  width: 400px;
 }
 .Thumbnail_img {
-  max-width: 100%;
+  cursor: pointer;
+  max-width: 300px;
+}
+.EditPanel {
+  padding: 20px;
+  border-radius: 1px;
+  box-shadow: rgba(0,0,0,0.118) 0 1px 6px, rgba(0,0,0,0.118) 0px 1px 4px;
+  margin: 0 20px;
+  margin-top: 40px;
+  width: 53%;
+  min-width: 60px;
+  min-height: 200px;
+  background-color: #fff;
 }
 /**************Helpers*******************/
 .flexbox-container {
+  -ms-flex-pack: center;
+      justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
+}
+.center {
+  text-align: center;
 }

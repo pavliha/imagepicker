@@ -58,7 +58,7 @@ class InstagraphEffect
 
         $arrayOfEffects = explode(" ", $allEffects);
 
-        $listOfPaths = [];
+        $listOfNames = [];
 
         foreach ($arrayOfEffects as $filter) {
 
@@ -69,7 +69,7 @@ class InstagraphEffect
 
             $fileName =  $filter. str_random(4) . ".jpg";
 
-            $listOfNames[] = $fileName;
+            $listOfNames[] = [$fileName,$filter];
 
             $effect->save($pathToDestFolder . "/" .$fileName);
 

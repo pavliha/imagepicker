@@ -2,7 +2,6 @@
 import gulp from "gulp";
 import gulpLoadPlugins from 'gulp-load-plugins';
 import autoprefixer from "autoprefixer";
-import {rollup} from "rollup";
 import babelify from 'babelify';
 import cssnano from "cssnano";
 import lost from 'lost';
@@ -10,10 +9,6 @@ import browserify from "browserify";
 import vinylBuffer from 'vinyl-buffer';
 import vinylSource from 'vinyl-source-stream';
 import debowerify from "debowerify";
-import babel from 'rollup-plugin-babel';
-import jsx from 'rollup-plugin-jsx'
-import nodeResolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
 
 
 
@@ -122,22 +117,7 @@ gulp.task("browserify:uglifyjs", ()=> {
         .pipe($.livereload());
 
 });
-gulp.task("rollup", ()=> {
 
-    gulp.src(JS.src, {read: false})
-        .pipe($.rollup({
-            sourceMap: true,
-            plugins: [
-                babel({
-                    presets: ["react", 'es2015-rollup'],
-                    babelrc: false,
-                    exclude: 'node_modules/**'
-                })
-            ]
-        }))
-        .pipe($.sourcemaps.write("."))
-        .pipe(gulp.dest(JS.dest))
-});
 
 gulp.task('images', () => {
     gulp.src(IMAGES.src)
@@ -177,29 +157,46 @@ gulp.task("html",()=>{
        .pipe($.htmlmin({collapseWhitespace: true}));
     gulp.dest("storage/framework/views")
 });
-gulp.task('rollup:es6', () => {
-    return rollup({
-        entry: "resources/js/main.jsx",
-        plugins: [
-            babel({
-                babelrc:false,
-                exclude: 'node_modules/**'
-            }),
-            jsx( {factory: 'React.createElement'}),
-            nodeResolve({ jsnext: true }),
-            commonjs()
 
-        ]
-    }).then(bundle => {
-        return bundle.write({
-            sourceMap: 'inline',
-            format: "iife",
-            dest: "public/js/main.js"
-        })
-    });
+gulp.task('apply-prod-environment', function() {
+    process.env.NODE_ENV = 'production';
 });
+gulp.task("production",["apply-prod-environment",'browserify:uglifyjs',"styles:minify","html"]);
 
-gulp.task("production",['browserify:uglifyjs',"styles:minify","html"]);
-
-
-
+//gulp.task('rollup:es6', () => {
+//    return rollup({
+//        entry: "resources/js/main.jsx",
+//        plugins: [
+//            babel({
+//                babelrc:false,
+//                exclude: 'node_modules/**'
+//            }),
+//            jsx( {factory: 'React.createElement'}),
+//            nodeResolve({ jsnext: true }),
+//            commonjs()
+//
+//        ]
+//    }).then(bundle => {
+//        return bundle.write({
+//            sourceMap: 'inline',
+//            format: "iife",
+//            dest: "public/js/main.js"
+//        })
+//    });
+//});
+//gulp.task("rollup", ()=> {
+//
+//    gulp.src(JS.src, {read: false})
+//        .pipe($.rollup({
+//            sourceMap: true,
+//            plugins: [
+//                babel({
+//                    presets: ["react", 'es2015-rollup'],
+//                    babelrc: false,
+//                    exclude: 'node_modules/**'
+//                })
+//            ]
+//        }))
+//        .pipe($.sourcemaps.write("."))
+//        .pipe(gulp.dest(JS.dest))
+//});

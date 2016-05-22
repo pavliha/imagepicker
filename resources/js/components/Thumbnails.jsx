@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 class Thumbnails extends React.Component {
     constructor(props) {
         super(props);
@@ -12,9 +13,18 @@ class Thumbnails extends React.Component {
             <div className={this.props.className}>
                 {this.props.photos.map((photo)=> {
                     return (
-                        <div key={photo} className="Thumbnail">
-                            <img src={photo} className="Thumbnail_img"/>
-                        </div>)
+                        <Card key={photo[0]} className="Thumbnail">
+                            <CardMedia
+                                overlay={<CardTitle subtitle={photo[1].toUpperCase()} />}
+                            >
+                                <img src={photo[0]} className="Thumbnail_img"/>
+                            </CardMedia>
+                            <CardActions className="center">
+                                <a href={photo[0]} download> <FlatButton label="Скачать"/></a>
+                                <FlatButton label="Редактировать"/>
+                            </CardActions>
+                        </Card>
+                    )
                 })}
 
             </div>

@@ -16,23 +16,27 @@ body {
   box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 2px 5px rgba(0, 0, 0, 0.11);
 }
 
+.Card_ImageUploader {
+  margin 0 20px;
+  margin-top 40px;
+  width: 450px;
+  z-index 3;
+  min-width 60px;
+  min-height 200px;
+}
 
-.ImageUploader{
+.ImageUploader {
+  position: relative
   display flex;
   flex-direction: column;
   justify-content center;
   align-items center;
   align-content center;
-  margin 0 20px;
-  margin-top 40px;
-  width:37%;
-  z-index 3;
-  min-width 60px;
   min-height 200px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  //box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   //background-color #fafafa;
   border-radius: 2px;
-  background-color: #363433;
+  //background-color: #fff5f3;
   form {
     width 100%;
     //background-color #0b97c4
@@ -45,17 +49,24 @@ body {
 }
 
 .ImageUploader_previewImage {
-  opacity:0.4;
   text-align center
   width 100%;
+  //max-height 80vh;
 }
-.ImageUploader_StatusBar{
+
+.ImageUploader_StatusBar {
+
+  height: 100%;
+  width: 100%;
   margin-top: auto;
-  width 100%;
-  color #fafafa;
-  padding 5px;
+  color rgba(0, 0, 0, 0.74);
   text-align center;
-  background: linear-gradient(50deg, #393939, #2e2321);
+  background: linear-gradient(50deg, rgba(46, 35, 33, 0.5), rgba(46, 35, 33, 0.5));
+
+  .status {
+    color white;
+    font-size 16pt;
+  }
 }
 
 .Thumbnails {
@@ -68,6 +79,7 @@ body {
 }
 
 .Thumbnail {
+  //cursor: pointer;
   margin 5px;
   overflow hidden;
   //background-color #77908f;
@@ -75,19 +87,34 @@ body {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   //background-color #fafafa
   border 3px;
-  width 300px;
-}
-.Thumbnail_img {
-  max-width 100%;
+  width 400px;
 }
 
+.Thumbnail_img {
+  cursor: pointer;
+  max-width 300px;
+}
+
+.EditPanel {
+  padding 20px;
+  border-radius: 1px;
+  box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  margin 0 20px;
+  margin-top 40px;
+  width 53%;
+  min-width 60px;
+  min-height 200px;
+  background-color #ffffff;
+}
 
 /**************Helpers*******************/
 
 .flexbox-container {
+  justify-content center;
   flex-wrap wrap;
   display: flex;
-  align-items: center;
-  justify-content center;
 }
 
+.center {
+  text-align center;
+}

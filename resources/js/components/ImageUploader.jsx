@@ -7,6 +7,10 @@ import ReactDOM from "react-dom";
 import PhotoSender from "~/resources/js/modules/PhotoSender";
 import ImageButton from './ImageButton.jsx';
 import StatusBar from "./StatusBar.jsx";
+import LinearProgress from 'material-ui/LinearProgress';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import Snackbar from 'material-ui/Snackbar';
+
 
 class ImageUploader extends React.Component {
 
@@ -16,6 +20,7 @@ class ImageUploader extends React.Component {
         this.state = {
             buttonName: " Выбрать фото ",
             buttonActive: true,
+            percent:0,
             response: "",
             message: '',
             open: false,
@@ -50,7 +55,6 @@ class ImageUploader extends React.Component {
     }
 
     handleResponse(res) {
-
         this.setState({
             buttonName: " Готово! ",
             buttonActive: false,
@@ -73,6 +77,7 @@ class ImageUploader extends React.Component {
             this.setState({
                 buttonName: 'Загрузка ' + percentage + "%",
                 message: 'Загрузка ' + percentage + "%",
+                percent:percentage,
             });
 
             if (percentage === 100) {
@@ -88,7 +93,6 @@ class ImageUploader extends React.Component {
     }
 
     handleInputFileChange(e) {
-
         e.preventDefault();
 
         let inputFile = e.target.files[0];
@@ -106,9 +110,6 @@ class ImageUploader extends React.Component {
 
     render() {
 
-        var preview;
-
-
         return (
             <div className={this.props.className}>
 
@@ -123,12 +124,17 @@ class ImageUploader extends React.Component {
                     if(this.state.previewImage) {
                         return (
                             <StatusBar className="ImageUploader_StatusBar">
-                                {this.state.buttonName}
+                                <LinearProgress mode="determinate" value={this.state.percent} size={4} />
                             </StatusBar>
                         )
                     }
                 })()}
 
+                <Snackbar
+                    open={this.state.open}
+                    message={this.state.message}
+                    autoHideDuration={4000}
+                />
             </div>
         );
     }
