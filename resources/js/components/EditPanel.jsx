@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import Caman from "caman";
 
 class EditPanel extends React.Component {
 
@@ -10,6 +10,9 @@ class EditPanel extends React.Component {
     }
 
     render() {
+        Caman("ImageUploader_previewImage", function () {
+            this.vibrance(100).render();
+        });
         return (
             <div className={this.props.className}>
                 {this.props.children}

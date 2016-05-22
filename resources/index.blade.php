@@ -42,6 +42,7 @@
 </script>
 
 {{--<script src="/bower_components/jquery/dist/jqueryAjax.js"></script>--}}
+<script src="/bower_components/caman/dist/caman.full.min.js"></script>
 <script src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.min.js"></script>
 <script src="/js/main.js"></script>
 

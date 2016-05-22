@@ -10,7 +10,7 @@ import StatusBar from "./StatusBar.jsx";
 import LinearProgress from 'material-ui/LinearProgress';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Snackbar from 'material-ui/Snackbar';
-
+import ImagePreview from "./ImagePreview.jsx"
 
 class ImageUploader extends React.Component {
 
@@ -20,30 +20,17 @@ class ImageUploader extends React.Component {
         this.state = {
             buttonName: " Выбрать фото ",
             buttonActive: true,
-            percent:0,
+            percent: 0,
             response: "",
             message: '',
             open: false,
-            previewImage: false
+            progressMode:"determinate",
+            previewImage: false,
+            statusPadding: {paddingBottom: "0px"}
         }
 
     }
 
-    showTheForm() {
-        return (
-            <form>
-                <ImageButton
-                    disabled={!this.state.buttonActive}
-                    onChange={this.handleInputFileChange.bind(this)}>
-                    {this.state.buttonName}
-                </ImageButton>
-            </form>
-        )
-    }
-
-    showThePreviewImage() {
-        return (<img src={this.state.previewImage} className="ImageUploader_previewImage"/>);
-    }
 
     readTheImage(inputFile) {
         let reader = new window.FileReader();
@@ -59,14 +46,10 @@ class ImageUploader extends React.Component {
             buttonName: " Готово! ",
             buttonActive: false,
             open: true,
-            message: 'Обработка фотографии завершена',
+            message: '',
+            statusPadding: {paddingBottom: "0px"}
         });
-        setTimeout(()=> {
-            this.setState({
-                buttonName: " Выбрать фото ",
-                buttonActive: true,
-            });
-        }, 3000);
+
         this.props.onPhotosLoad(res);
     }
 
@@ -75,17 +58,15 @@ class ImageUploader extends React.Component {
             var percentage = Math.round((e.loaded * 100) / e.total);
 
             this.setState({
-                buttonName: 'Загрузка ' + percentage + "%",
-                message: 'Загрузка ' + percentage + "%",
-                percent:percentage,
+                percent: percentage,
             });
 
             if (percentage === 100) {
                 this.setState({
-                    buttonName: "Обработка... ",
                     buttonActive: false,
                     open: true,
-                    message: 'Обработка фотографии...',
+                    statusPadding: {paddingBottom: "5px"},
+                    message: 'обработка фотографии...',
                 });
             }
 
@@ -113,28 +94,24 @@ class ImageUploader extends React.Component {
         return (
             <div className={this.props.className}>
 
-                {(()=> {
-                    if (!this.state.previewImage) {
-                        return this.showTheForm();
-                    } else {
-                        return this.showThePreviewImage();
-                    }
-                })()}
-                {(()=> {
-                    if(this.state.previewImage) {
-                        return (
-                            <StatusBar className="ImageUploader_StatusBar">
-                                <LinearProgress mode="determinate" value={this.state.percent} size={4} />
-                            </StatusBar>
-                        )
-                    }
-                })()}
+                <ImagePreview previewImage={this.state.previewImage} className="ImagePreview">
+
+                        <ImageButton
+                            disabled={!this.state.buttonActive}
+                            onChange={this.handleInputFileChange.bind(this)}>
+                            {this.state.buttonName}
+                        </ImageButton>
+                </ImagePreview>
+
+                <StatusBar className="ImageUploader_StatusBar" style={this.state.statusPadding}>
+                    <LinearProgress mode="determinate" value={this.state.percent}/>
+                    {this.state.message}
+                </StatusBar>
 
                 <Snackbar
                     open={this.state.open}
                     message={this.state.message}
-                    autoHideDuration={4000}
-                />
+                    autoHideDuration={4000}/>
             </div>
         );
     }
