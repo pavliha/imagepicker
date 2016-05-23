@@ -66,7 +66,7 @@ class ImageUploader extends React.Component {
                     buttonActive: false,
                     open: true,
                     statusPadding: {paddingBottom: "5px"},
-                    message: 'обработка фотографии...',
+                    message: ' подождите идет обработка фотографии...',
                 });
             }
 
@@ -92,7 +92,7 @@ class ImageUploader extends React.Component {
     render() {
 
         return (
-            <div className={this.props.className}>
+            <div className="ImageUploader">
 
                 <ImagePreview previewImage={this.state.previewImage} className="ImagePreview">
 

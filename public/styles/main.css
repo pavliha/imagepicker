@@ -348,7 +348,7 @@ body {
   height: 60px;
   box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 2px 5px rgba(0,0,0,0.11);
 }
-.Card_ImageUploader {
+.ImageUploaderCard {
   margin: 0 20px;
   margin-top: 40px;
   width: 450px;
@@ -420,7 +420,7 @@ body {
   border-radius: 2px;
   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   border: 3px;
-  width: 400px;
+  width: 300px;
 }
 .Thumbnail_img {
   cursor: pointer;
@@ -448,4 +448,33 @@ body {
 }
 .center {
   text-align: center;
+}
+.Range {
+  margin: 20px;
+  padding: 10px;
+  border: 1px rgba(0,0,0,0.1) solid;
+  background: rgba(0,0,0,0.02);
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+}
+.Range .value {
+  padding-left: 5px;
+  -ms-flex-preferred-size: 5%;
+      flex-basis: 5%;
+}
+.Range div {
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+}
+.Range .Slider {
+  padding-top: 25px;
+  -ms-flex-preferred-size: 80%;
+      flex-basis: 80%;
 }
