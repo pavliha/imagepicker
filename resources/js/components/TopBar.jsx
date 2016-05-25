@@ -5,6 +5,7 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
+import ImageButton from "./ImageButton.jsx";
 
 class TopBar extends React.Component {
 
@@ -23,8 +24,6 @@ class TopBar extends React.Component {
         return (
             <AppBar
                 title={<span style={this.styles.title}>Image picker</span>}
-                iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-                iconElementRight={<FlatButton label="Download photo" />}
             />
         );
     }

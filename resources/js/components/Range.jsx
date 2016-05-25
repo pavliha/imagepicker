@@ -16,8 +16,8 @@ class Range extends React.Component {
                 <div>{this.props.label}</div>
                 <Slider
                     className="Slider"
-                    min={-100}
-                    max={100}
+                    min={-50}
+                    max={50}
                     defaultValue={0}
                     value={this.props.value}
                     onChange={this.props.onChange}

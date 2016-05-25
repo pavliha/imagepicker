@@ -19,36 +19,30 @@ import TopBar from "./components/TopBar.jsx";
 class Main extends React.Component {
 
 
-
     constructor(props) {
 
         super(props);
-        this.state = {
-            photos: null
-        };
-    }
-
-    handleFileChange() {
-        this.setState({photos: null});
-    }
-
-    handlePhotosLoad(response) {
-        this.setState({photos: response})
 
     }
 
+
+    state = {
+        photos: null,
+        //imageButtonClick:false
+    };
 
     render() {
 
         return (
             <div>
 
-               <TopBar/>
+                <TopBar/>
 
                 <section className="flexbox-container">
 
                     <ImageUploaderCard>
                         <ImageUploader
+                            onImageButtonClick={this.state.ImageButtonClick}
                             onFormChange={this.handleFileChange.bind(this)}
                             onPhotosLoad={this.handlePhotosLoad.bind(this)}
                         />
@@ -66,19 +60,22 @@ class Main extends React.Component {
 
     }
 
+    //handleInputFileChange(e) {
+    //    //var image = handeImageClick(e);
+    //    //this.setState({ImageButtonClick: image})
+    //}
 
+    handleFileChange() {
+        this.setState({photos: null});
+    }
+
+    handlePhotosLoad(response) {
+        this.setState({photos: response})
+
+    }
 
 
 }
-
-
-
-
-
-
-
-
-
 
 
 const App = () => (

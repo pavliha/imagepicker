@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Range from "./Range.jsx";
+import FlatButton from 'material-ui/FlatButton';
 
 class EditPanel extends React.Component {
 
@@ -40,14 +41,27 @@ class EditPanel extends React.Component {
                     value={this.state.sepia}
                     onChange={this.handleSepia.bind(this)}
                 />
+                <div className="center">
+                    <FlatButton label="Сбросить" onClick={this.handleReset.bind(this)} />
+                </div>
+
             </div>
         );
     }
 
+    handleReset(){
+        this.setState({
+            brightness: 0,
+            saturation:0,
+            exposure:0,
+            sepia:0,
+        });
+
+        this.applyFilter(this.state);
+    }
     handleBrightness(e, value) {
         this.setState({brightness: value});
         this.applyFilter(this.state);
-
     }
 
     handleSaturation(e, value) {
@@ -66,15 +80,16 @@ class EditPanel extends React.Component {
     }
 
     applyFilter(v) {
-
-        Caman("#EditImage", function () {
-            this.revert(false);
-            this.brightness(v.brightness);
-            if (v.saturation) this.saturation(v.saturation);
-            if (v.exposure) this.exposure(v.exposure);
-            if (v.sepia) this.sepia(v.sepia);
-            this.render();
-        });
+        if (document.querySelector("#EditImage")) {
+            Caman("#EditImage", function () {
+                this.revert(false);
+                this.brightness(v.brightness);
+                if (v.saturation) this.saturation(v.saturation);
+                if (v.exposure) this.exposure(v.exposure);
+                if (v.sepia) this.sepia(v.sepia);
+                this.render();
+            });
+        }
 
     }
 

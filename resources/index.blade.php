@@ -33,16 +33,13 @@
 <footer>
 
 </footer>
-
+<iframe id="downloadFileiFrame" style="display:none;"></iframe>"
 
 {{--//////***** SCRIPTS *****///////--}}
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous">
-</script>
 
-{{--<script src="/bower_components/jquery/dist/jqueryAjax.js"></script>--}}
-<script src="/bower_components/caman/dist/caman.full.js"></script>
+
+<script src="/bower_components/jquery/dist/jqueryAjax.js"></script>
+<script src="/bower_components/caman/dist/caman.full.min.js"></script>
 <script src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.min.js"></script>
 <script src="/js/main.js"></script>
 

@@ -11,23 +11,25 @@ import LinearProgress from 'material-ui/LinearProgress';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Snackbar from 'material-ui/Snackbar';
 import ImagePreview from "./ImagePreview.jsx"
+import Status from "./Status.jsx";
 
 class ImageUploader extends React.Component {
 
-    constructor(props) {
+    state = {
+        buttonName: " Выбрать фото ",
+        buttonActive: true,
+        percent: 0,
+        response: "",
+        message: '',
+        open: false,
+        progressMode: "determinate",
+        previewImage: false,
+        statusPadding: {paddingBottom: "0px"},
+        statusStyle: 0,
+    };
 
+    constructor(props) {
         super(props);
-        this.state = {
-            buttonName: " Выбрать фото ",
-            buttonActive: true,
-            percent: 0,
-            response: "",
-            message: '',
-            open: false,
-            progressMode:"determinate",
-            previewImage: false,
-            statusPadding: {paddingBottom: "0px"}
-        }
 
     }
 
@@ -66,7 +68,7 @@ class ImageUploader extends React.Component {
                     buttonActive: false,
                     open: true,
                     statusPadding: {paddingBottom: "5px"},
-                    message: ' подождите идет обработка фотографии...',
+                    message: ' идёт применение фильтров...',
                 });
             }
 
@@ -87,25 +89,31 @@ class ImageUploader extends React.Component {
             .done(this.handleResponse.bind(this));
 
         this.props.onFormChange();
+        this.setState({"statusStyle": "20px"})
     }
 
     render() {
+        if(this.props.onImageButtonClick){
+            var image = this.props.onImageButtonClick;
+            image = function(e){
+                console.log("hello",e);
+            }
 
+        }
         return (
             <div className="ImageUploader">
 
                 <ImagePreview previewImage={this.state.previewImage} className="ImagePreview">
-
-                        <ImageButton
-                            disabled={!this.state.buttonActive}
-                            onChange={this.handleInputFileChange.bind(this)}>
-                            {this.state.buttonName}
-                        </ImageButton>
+                    <ImageButton
+                        disabled={!this.state.buttonActive}
+                        onChange={this.handleInputFileChange.bind(this)}>
+                        {this.state.buttonName}
+                    </ImageButton>
                 </ImagePreview>
 
-                <StatusBar className="ImageUploader_StatusBar" style={this.state.statusPadding}>
+                <StatusBar className="StatusBar">
+                    <Status>{this.state.message}</Status>
                     <LinearProgress mode="determinate" value={this.state.percent}/>
-                    {this.state.message}
                 </StatusBar>
 
                 <Snackbar

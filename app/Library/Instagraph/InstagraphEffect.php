@@ -36,7 +36,7 @@ class InstagraphEffect
      * @param string $path
      */
     public function save(string $path) {
-        imagepng($this->image, $path);
+        imagejpeg($this->image, $path);
         imagedestroy($this->image);
     }
 
@@ -78,6 +78,10 @@ class InstagraphEffect
 
         return $listOfNames;
 
+    }
+
+    public function getImage() {
+        return imagejpeg($this->image);
     }
 
 }
