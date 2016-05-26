@@ -90,8 +90,8 @@ class EditPanel extends React.Component {
     }
 
     applyFilter(v) {
-        if (document.querySelector("#EditImage")) {
-
+        var img = document.querySelector("#EditImage");
+        if (img) {
             Caman("#EditImage", function () {
                 this.revert(false);
 
