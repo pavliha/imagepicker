@@ -9,21 +9,23 @@
   display flex;
   height 30px;
 
-  .label--disabled{
-    color gray;
-  }
-  .label{
-    color black;
-  }
-  .value{
-    padding-left: 5px;
+  .icon{
+    padding 10px;
     flex-basis 5%;
-  }
-  div{
-    flex-basis 20%;
   }
   .Slider{
     padding-top 25px;
     flex-basis 80%;
   }
 }
+
+.label{
+  color black;
+  flex-basis 23%;
+  text-align: left;
+  &--disabled{
+    @extend .label
+    color gray;
+  }
+}
+

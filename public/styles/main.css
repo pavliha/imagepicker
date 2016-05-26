@@ -360,23 +360,11 @@ table {
   max-width: 300px;
 }
 .ImageUploader {
-  position: relative;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  min-height: 200px;
   border-radius: 2px;
-}
-.ImageUploader_previewImage {
-  text-align: center;
-  width: 100%;
 }
 .ImageUploaderCard {
   margin: 0 20px;
@@ -401,25 +389,26 @@ table {
   display: flex;
   height: 30px;
 }
-.Range .label--disabled {
-  color: #808080;
-}
-.Range .label {
-  color: #000;
-}
-.Range .value {
-  padding-left: 5px;
+.Range .icon {
+  padding: 10px;
   -ms-flex-preferred-size: 5%;
       flex-basis: 5%;
-}
-.Range div {
-  -ms-flex-preferred-size: 20%;
-      flex-basis: 20%;
 }
 .Range .Slider {
   padding-top: 25px;
   -ms-flex-preferred-size: 80%;
       flex-basis: 80%;
+}
+.label,
+.label--disabled {
+  color: #000;
+  -ms-flex-preferred-size: 23%;
+      flex-basis: 23%;
+  text-align: left;
+}
+.label--disabled,
+.label--disabled--disabled {
+  color: #808080;
 }
 .EditPanel {
   padding: 20px;
@@ -428,39 +417,82 @@ table {
   margin: 0 20px;
   margin-top: 40px;
   width: 53%;
-  min-width: 60px;
+  min-width: 520px;
   min-height: 200px;
   background-color: #fff;
 }
+@media (max-width: 600px) {
+  .EditPanel {
+    display: none;
+  }
+}
 .StatusBar {
-  height: 100%;
   width: 100%;
   margin-top: auto;
   color: #000;
   font-family: Roboto, sans-serif;
   font-kerning: 10ch;
+  padding: 5px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-align: end;
+      align-items: flex-end;
+  -ms-flex-pack: center;
+      justify-content: center;
   text-align: center;
   line-height: 20px;
   font-size: 11pt;
 }
 .ImagePreview {
   width: 100%;
-  height: 300px;
+  min-height: 0;
+  transition: min-height 2s ease-out, background-color 2s, transform 2s;
+}
+.ImagePreview img {
+  width: 100%;
+  height: 100%;
+}
+.ImagePreview--active {
+  min-height: 32.6vh;
+}
+.ImagePreview--active img {
+  width: 100%;
+  height: 100%;
+}
+.ButtonsBlock {
+  height: 40vh;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-left: 60px;
+  margin-right: 60px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
+}
+.ButtonsBlock--down {
+  margin-left: 0;
+  margin-right: 0;
+  height: 40px;
   -ms-flex-pack: center;
       justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
+  padding-top: 0;
 }
 body {
   padding: 0;
   margin: 0;
   background-color: #fafafa;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+html,
+body {
+  min-height: 100% !important;
+  height: 100%;
 }
 /**************Helpers*******************/
 .flexbox-container {
@@ -473,4 +505,11 @@ body {
 }
 .center {
   text-align: center;
+}
+.hidden {
+  background-color: #0b97c4;
+  display: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
