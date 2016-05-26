@@ -9,8 +9,8 @@ import browserify from "browserify";
 import vinylBuffer from 'vinyl-buffer';
 import vinylSource from 'vinyl-source-stream';
 import debowerify from "debowerify";
-
-
+import webpack from "webpack";
+import gutil from "gulp-util";
 
 const $ = gulpLoadPlugins();
 
@@ -118,7 +118,29 @@ gulp.task("browserify:uglifyjs", ()=> {
 
 });
 
+gulp.task("uglifyjs", ()=> {
 
+    return gulp.src("public/js/main.js")
+        .pipe(vinylSource('main.min.js')) // generated output file
+        .pipe(vinylBuffer())         // required for sourcemaps
+        .pipe($.uglify())
+        .pipe(gulp.dest(JS.dest))
+        .pipe($.livereload());
+
+});
+
+gulp.task("webpack", function(callback) {
+    // run webpack
+    webpack({
+        // configuration
+    }, function (err, stats) {
+        if (err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            // output options
+        }));
+        callback();
+    });
+});
 gulp.task('images', () => {
     gulp.src(IMAGES.src)
         .pipe($.cache($.imagemin({

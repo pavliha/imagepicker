@@ -5,16 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
-
-    <!-- Web Application Manifest -->
-    <link rel="manifest" href="manifest.json">
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Web Starter Kit">
+    <meta name="application-name" content="Image Picker">
     <meta name="theme-color" content="#2F3BA2">
     <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
 
@@ -33,14 +28,12 @@
 <footer>
 
 </footer>
-<iframe id="downloadFileiFrame" style="display:none;"></iframe>"
 
 {{--//////***** SCRIPTS *****///////--}}
 
 
-<script src="/bower_components/jquery/dist/jqueryAjax.js"></script>
-<script src="/bower_components/caman/dist/caman.full.min.js"></script>
-<script src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.min.js"></script>
+<script async src="/bower_components/jquery/dist/jqueryAjax.js"></script>
+<script async src="/bower_components/caman/dist/caman.min.js"></script>
 <script src="/js/main.js"></script>
 
 
