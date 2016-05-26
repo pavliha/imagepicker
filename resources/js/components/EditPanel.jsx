@@ -5,16 +5,19 @@ import FlatButton from 'material-ui/FlatButton';
 
 class EditPanel extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-    state = {
+    defaultState = {
         brightness: 0,
         saturation: 0,
         exposure: 0,
         sepia: 0,
+        hue:0,
     };
+
+    constructor(props) {
+        super(props);
+        this.state = this.defaultState;
+    }
+
 
 
     render() {
@@ -44,6 +47,12 @@ class EditPanel extends React.Component {
                     label="Сепия"
                     value={this.state.sepia}
                     onChange={this.handleSepia.bind(this)}
+                />
+                <Range
+                    disabled={this.props.disabled}
+                    label="Оттенок"
+                    value={this.state.hue}
+                    onChange={this.handleHue.bind(this)}
                 />
                 <div className="center">
                     <FlatButton label="Сбросить"  disabled={this.props.disabled} onClick={this.handleReset.bind(this)} />
@@ -75,6 +84,11 @@ class EditPanel extends React.Component {
         this.applyFilter(this.state);
     }
 
+    handleHue(e,value){
+        this.setState({hue: value});
+        this.applyFilter(this.state);
+    }
+
     applyFilter(v) {
         if (document.querySelector("#EditImage")) {
 
@@ -85,6 +99,8 @@ class EditPanel extends React.Component {
                 if (v.saturation) this.saturation(v.saturation);
                 if (v.exposure) this.exposure(v.exposure);
                 if (v.sepia) this.sepia(v.sepia);
+                if (v.hue) this.sepia(v.hue);
+
                 this.render();
             });
 
@@ -93,12 +109,7 @@ class EditPanel extends React.Component {
     }
 
     handleReset(){
-        this.setState({
-            brightness: 0,
-            saturation:0,
-            exposure:0,
-            sepia:0,
-        });
+        this.setState(this.defaultState);
 
         Caman('#EditImage',function() {
             this.revert(false);

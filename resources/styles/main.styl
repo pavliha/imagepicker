@@ -10,20 +10,18 @@
 @import "components/EditPanel.styl";
 @import "components/StatusBar.styl";
 @import "components/ImagePreview.styl";
+@import "components/ButtonsBlock.styl";
 
 body {
   padding 0;
   margin 0;
   background-color #fafafa
 }
-
-
-
-
-
-
-
-
+* { padding: 0; margin: 0; }
+html, body {
+  min-height: 100% !important;
+  height: 100%;
+}
 
 /**************Helpers*******************/
 
@@ -35,6 +33,14 @@ body {
 
 .center {
   text-align center;
+}
+
+.hidden {
+  background-color #0b97c4;
+  display none;
+  padding 0;
+  margin 0;
+  border 0;
 }
 
 

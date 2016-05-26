@@ -6,13 +6,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PhotoSender from "~/resources/js/modules/PhotoSender";
 import ImageButton from './ImageButton.jsx';
-import StatusBar from "./StatusBar.jsx";
 import LinearProgress from 'material-ui/LinearProgress';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Snackbar from 'material-ui/Snackbar';
 import ImagePreview from "./ImagePreview.jsx"
-import Status from "./Status.jsx";
+import ButtonsBlock from "./ButtonsBlock.jsx"
 
+function hif(value, condition) {
+    if (condition) {
+        return value;
+    }
+}
 class ImageUploader extends React.Component {
 
     state = {
@@ -35,24 +39,18 @@ class ImageUploader extends React.Component {
     render() {
         return (
             <div className="ImageUploader">
-
-                <ImagePreview previewImage={this.state.previewImage} className="ImagePreview">
+                <ImagePreview previewImage={this.state.previewImage}/>
+                <ButtonsBlock expanded={!this.state.previewImage}>
                     <ImageButton
                         disabled={!this.state.buttonActive}
                         onChange={this.handleInputFileChange.bind(this)}>
                         {this.state.buttonName}
                     </ImageButton>
-                </ImagePreview>
-
-                <StatusBar className="StatusBar">
-                    <Status>{this.state.message}</Status>
-                    <LinearProgress mode="determinate" value={this.state.percent}/>
-                </StatusBar>
-
-                <Snackbar
-                    open={this.state.open}
-                    message={this.state.message}
-                    autoHideDuration={4000}/>
+                    <div className={this.state.previewImage ? "": "hidden"}>
+                        <LinearProgress  mode="determinate" value={this.state.percent}/>
+                    </div>
+                </ButtonsBlock>
+                <Snackbar open={this.state.open} message={this.state.message} autoHideDuration={4000}/>
             </div>
         );
     }
@@ -70,7 +68,7 @@ class ImageUploader extends React.Component {
     handleResponse(res) {
         this.setState({
             buttonName: " Готово! ",
-            buttonActive: false,
+            buttonActive: true,
             open: true,
             message: '',
         });

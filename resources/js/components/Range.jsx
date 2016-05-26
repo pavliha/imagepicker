@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import FontIcon from 'material-ui/FontIcon';
 import Slider from 'material-ui/Slider';
+import {red50} from 'material-ui/styles/colors';
 
 class Range extends React.Component {
 
@@ -29,6 +30,9 @@ class Range extends React.Component {
                     value={this.props.value}
                     onChange={this.props.onChange}
                 />
+                <div>
+                    <FontIcon className="material-icons" color={red50}>close</FontIcon>
+                </div>
             </div>
         );
     }

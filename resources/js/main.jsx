@@ -15,7 +15,6 @@ import ImageUploader from "./components/ImageUploader.jsx";
 import EditPanel from "./components/EditPanel.jsx";
 import ImageUploaderCard from "./components/ImageUploaderCard.jsx";
 import TopBar from "./components/TopBar.jsx";
-
 class Main extends React.Component {
 
 

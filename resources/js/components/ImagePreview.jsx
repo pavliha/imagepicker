@@ -12,14 +12,13 @@ class ImagePreview extends React.Component {
     render() {
 
         if (this.props.previewImage) {
-            return (<img src={this.props.previewImage} id="EditImage" className="ImageUploader_previewImage"/>)
+            return (
+                <div className="ImagePreview ImagePreview--active">
+                    <img src={this.props.previewImage} id="EditImage"/>
+                </div>
+            )
         }
-
-        return (
-            <form className={this.props.className}>
-                {this.props.children}
-            </form>
-        )
+        return null;
 
 
     }
