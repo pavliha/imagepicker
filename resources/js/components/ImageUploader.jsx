@@ -20,7 +20,8 @@ function hif(value, condition) {
 }
 class ImageUploader extends React.Component {
 
-    state = {
+
+    defalutState = {
         buttonName: " Выбрать фото ",
         buttonActive: true,
         percent: 0,
@@ -33,26 +34,26 @@ class ImageUploader extends React.Component {
 
     constructor(props) {
         super(props);
-
+        this.state = this.defalutState;
     }
 
 
     render() {
         return (
-            <div className="ImageUploader">
-                <ImagePreview previewImage={this.state.previewImage}/>
-                <ButtonsBlock expanded={!this.state.previewImage}>
-                    <ImageButton
-                        disabled={!this.state.buttonActive}
-                        onChange={this.handleInputFileChange.bind(this)}>
-                        {this.state.buttonName}
-                    </ImageButton>
-                    <div className={this.state.previewImage ? "": "hidden"}>
-                        <LinearProgress  mode="determinate" value={this.state.percent}/>
-                    </div>
-                </ButtonsBlock>
-                <Snackbar open={this.state.open} message={this.state.message} autoHideDuration={4000}/>
-            </div>
+                <div className="ImageUploader">
+                    <ImagePreview previewImage={this.state.previewImage}/>
+                    <ButtonsBlock expanded={!this.state.previewImage}>
+                        <ImageButton
+                            disabled={!this.state.buttonActive}
+                            onChange={this.handleInputFileChange.bind(this)}>
+                            {this.state.buttonName}
+                        </ImageButton>
+                        <div className={this.state.previewImage ? "": "hidden"}>
+                            <LinearProgress mode="determinate" value={this.state.percent}/>
+                        </div>
+                    </ButtonsBlock>
+                    <Snackbar open={this.state.open} message={this.state.message} autoHideDuration={4000}/>
+                </div>
         );
     }
 
@@ -74,6 +75,14 @@ class ImageUploader extends React.Component {
             message: '',
         });
 
+        setTimeout(()=> {
+            this.setState({
+                buttonName: "Выбрать файлы",
+                buttonActive: true,
+                open: true,
+                message: '',
+            });
+        }, 1000);
         this.props.onPhotosLoad(res);
     }
 
@@ -83,10 +92,12 @@ class ImageUploader extends React.Component {
 
             this.setState({
                 percent: percentage,
+                buttonName: "Идет загрузка " + percentage + "%",
             });
 
             if (percentage === 100) {
                 this.setState({
+                    buttonName: "Применение фильтров",
                     buttonActive: false,
                     open: true,
                     message: ' идёт применение фильтров...',

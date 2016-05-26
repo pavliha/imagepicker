@@ -13,7 +13,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Thumbnails from "./components/Thumbnails.jsx";
 import ImageUploader from "./components/ImageUploader.jsx";
 import EditPanel from "./components/EditPanel.jsx";
-import ImageUploaderCard from "./components/ImageUploaderCard.jsx";
 import TopBar from "./components/TopBar.jsx";
 class Main extends React.Component {
 
@@ -40,13 +39,12 @@ class Main extends React.Component {
 
                 <section className="flexbox-container">
 
-                    <ImageUploaderCard>
+
                         <ImageUploader
                             onImageButtonClick={this.state.ImageButtonClick}
                             onFormChange={this.handleFileChange.bind(this)}
                             onPhotosLoad={this.handlePhotosLoad.bind(this)}
                         />
-                    </ImageUploaderCard>
 
                     <EditPanel disabled={this.state.PanelDisabled}/>
 
