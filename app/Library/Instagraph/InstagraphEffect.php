@@ -29,6 +29,7 @@ class InstagraphEffect
      * creates image instance
      */
     private function loadImageFromPath() {
+
         return imagecreatefromjpeg($this->path);
     }
 
@@ -36,6 +37,7 @@ class InstagraphEffect
      * @param string $path
      */
     public function save(string $path) {
+        imageinterlace($this->image, 1);
         imagejpeg($this->image, $path);
         imagedestroy($this->image);
     }
@@ -81,6 +83,7 @@ class InstagraphEffect
     }
 
     public function getImage() {
+        imageinterlace($this->image, 1);
         return imagejpeg($this->image);
     }
 
