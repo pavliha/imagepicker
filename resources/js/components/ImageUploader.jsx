@@ -9,8 +9,9 @@ import ImageButton from './ImageButton.jsx';
 import LinearProgress from 'material-ui/LinearProgress';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Snackbar from 'material-ui/Snackbar';
-import ImagePreview from "./ImagePreview.jsx"
+import ImagePreview from "./ImagePreview.jsx";
 import ButtonsBlock from "./ButtonsBlock.jsx"
+
 
 function hif(value, condition) {
     if (condition) {

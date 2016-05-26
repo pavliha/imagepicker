@@ -37,6 +37,7 @@
     "gulp-livereload": "^3.8.1",
     "gulp-load-plugins": "^1.2.2",
     "gulp-newer": "^1.0.0",
+    "gulp-notify": "^2.2.0",
     "gulp-pipeline": "^4.0.41",
     "gulp-postcss": "^6.1.1",
     "gulp-sass": "^2.0.0",

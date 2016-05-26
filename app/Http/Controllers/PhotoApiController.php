@@ -42,8 +42,8 @@ class PhotoApiController extends Controller
 
         $instagraphEffect = new InstagraphEffect($pathToSourceImage);
         $instagraphEffect->applyEffect($filter);
-       $instagraphEffect->save($path.'/effect.jpg');
 
+        $instagraphEffect->save($path.'/effect.jpg');
         return;
     }
 

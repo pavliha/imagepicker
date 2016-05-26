@@ -123,17 +123,17 @@ gulp.task("browserify", ()=> {
 gulp.task("browserify:uglifyjs", ()=> {
 
     return browserify({
-            entries: [JS.src],
-            debug: true
+        entries: [JS.src],
+        debug: true
+    })
+        .on('error', (err) => {
+            console.error(err);
+            this.emit('end')
         })
-            .on('error', (err) => {
-                console.error(err);
-                this.emit('end')
-            })
 
-            .transform("babelify")
-            .transform(debowerify)
-            .bundle()
+        .transform("babelify")
+        .transform(debowerify)
+        .bundle()
         .on('error', (err) => {
             console.error(err);
             this.emit('end')
