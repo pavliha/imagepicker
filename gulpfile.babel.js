@@ -107,7 +107,7 @@ gulp.task("browserify", ()=> {
             .transform(debowerify)
             .bundle())
         .on('error', (err) => {
-            console.error(err);
+            $.notify("Browserify error");
             this.emit('end')
         })
         .pipe(vinylSource('main.js')) // generated output file
@@ -115,7 +115,8 @@ gulp.task("browserify", ()=> {
         .pipe($.sourcemaps.write("."))
         .pipe(gulp.dest(JS.dest))
         .pipe($.livereload())
-        .pipe(browserSync.stream({match: JS.browSync}));
+        .pipe(browserSync.stream({match: JS.browSync}))
+        .pipe($.notify("Scripts compiled"))
 
 });
 
@@ -193,7 +194,8 @@ gulp.task("styles", ()=> {
         ]))
 
         .pipe(gulp.dest(STYLES.dest))
-        .pipe($.livereload());
+        .pipe($.livereload())
+
 });
 
 

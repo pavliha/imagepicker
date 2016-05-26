@@ -12,6 +12,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import Snackbar from 'material-ui/Snackbar';
 import ImagePreview from "./ImagePreview.jsx"
 import Status from "./Status.jsx";
+import ButtonsBlock from "./ButtonsBlock.jsx";
 
 class ImageUploader extends React.Component {
 
@@ -36,23 +37,20 @@ class ImageUploader extends React.Component {
         return (
             <div className="ImageUploader">
 
-                <ImagePreview previewImage={this.state.previewImage} className="ImagePreview">
+
+                <ImagePreview previewImage={this.state.previewImage}/>
+
+                <ButtonsBlock expanded={!this.state.previewImage}>
                     <ImageButton
                         disabled={!this.state.buttonActive}
                         onChange={this.handleInputFileChange.bind(this)}>
                         {this.state.buttonName}
                     </ImageButton>
-                </ImagePreview>
-
-                <StatusBar className="StatusBar">
-                    <Status>{this.state.message}</Status>
-                    <LinearProgress mode="determinate" value={this.state.percent}/>
-                </StatusBar>
-
-                <Snackbar
-                    open={this.state.open}
-                    message={this.state.message}
-                    autoHideDuration={4000}/>
+                    <div className={this.state.previewImage ? "": "hidden"}>
+                        <LinearProgress  mode="determinate" value={this.state.percent}/>
+                    </div>
+                </ButtonsBlock>
+                <Snackbar open={this.state.open} message={this.state.message} autoHideDuration={4000}/>
             </div>
         );
     }

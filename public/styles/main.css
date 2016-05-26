@@ -446,20 +446,15 @@ table {
   font-size: 11pt;
 }
 .ImagePreview {
-  width: 100%;
-  min-height: 0;
-  transition: min-height 2s ease-out, background-color 2s, transform 2s;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  border-radius: 2px;
 }
-.ImagePreview img {
+.ImagePreview .img {
+  text-align: center;
   width: 100%;
-  height: 100%;
-}
-.ImagePreview--active {
-  min-height: 32.6vh;
-}
-.ImagePreview--active img {
-  width: 100%;
-  height: 100%;
 }
 .ButtonsBlock {
   height: 40vh;
