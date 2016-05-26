@@ -5,25 +5,43 @@ import Slider from 'material-ui/Slider';
 
 class Range extends React.Component {
 
+    state = {
+
+    };
+
     constructor(props) {
         super(props);
-        this.state = {}
     }
 
     render() {
+
+
         return (
             <div className="Range">
-                <div>{this.props.label}</div>
+                <div className={this.labelColor(this.props.disabled)}>{this.props.label}</div>
                 <Slider
+                    disabled={this.props.disabled}
                     className="Slider"
                     min={-50}
                     max={50}
+                    step={2}
                     defaultValue={0}
                     value={this.props.value}
                     onChange={this.props.onChange}
                 />
             </div>
         );
+    }
+
+    labelColor(condition) {
+        if(condition){
+          return "label--disabled"
+        }
+        else{
+            return "label"
+        }
+
+
     }
 }
 

@@ -28,6 +28,7 @@ class Main extends React.Component {
 
     state = {
         photos: null,
+        PanelDisabled: true,
         //imageButtonClick:false
     };
 
@@ -48,7 +49,7 @@ class Main extends React.Component {
                         />
                     </ImageUploaderCard>
 
-                    <EditPanel/>
+                    <EditPanel disabled={this.state.PanelDisabled}/>
 
                 </section>
 
@@ -66,7 +67,10 @@ class Main extends React.Component {
     //}
 
     handleFileChange() {
-        this.setState({photos: null});
+        this.setState({
+            photos: null,
+            PanelDisabled: false,
+        });
     }
 
     handlePhotosLoad(response) {

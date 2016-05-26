@@ -22,43 +22,39 @@ class EditPanel extends React.Component {
         return (
             <div className="EditPanel">
                 <Range
+                    disabled={this.props.disabled}
                     label="Яркость"
                     value={this.state.brightness}
                     onChange={this.handleBrightness.bind(this)}
                 />
                 <Range
+                    disabled={this.props.disabled}
                     label="Насыщенность"
                     value={this.state.saturation}
                     onChange={this.handleSaturation.bind(this)}
                 />
                 <Range
+                    disabled={this.props.disabled}
                     label="Экспозиция"
                     value={this.state.exposure}
                     onChange={this.handleExposure.bind(this)}
                 />
                 <Range
+                    disabled={this.props.disabled}
                     label="Сепия"
                     value={this.state.sepia}
                     onChange={this.handleSepia.bind(this)}
                 />
                 <div className="center">
-                    <FlatButton label="Сбросить" onClick={this.handleReset.bind(this)} />
+                    <FlatButton label="Сбросить"  disabled={this.props.disabled} onClick={this.handleReset.bind(this)} />
                 </div>
 
             </div>
         );
     }
 
-    handleReset(){
-        this.setState({
-            brightness: 0,
-            saturation:0,
-            exposure:0,
-            sepia:0,
-        });
 
-        this.applyFilter(this.state);
-    }
+
     handleBrightness(e, value) {
         this.setState({brightness: value});
         this.applyFilter(this.state);
@@ -81,16 +77,33 @@ class EditPanel extends React.Component {
 
     applyFilter(v) {
         if (document.querySelector("#EditImage")) {
+
             Caman("#EditImage", function () {
                 this.revert(false);
-                this.brightness(v.brightness);
+
+                if (v.brightness) this.brightness(v.brightness);
                 if (v.saturation) this.saturation(v.saturation);
                 if (v.exposure) this.exposure(v.exposure);
                 if (v.sepia) this.sepia(v.sepia);
                 this.render();
             });
+
         }
 
+    }
+
+    handleReset(){
+        this.setState({
+            brightness: 0,
+            saturation:0,
+            exposure:0,
+            sepia:0,
+        });
+
+        Caman('#EditImage',function() {
+            this.revert(false);
+            this.render();
+        });
     }
 
 }
