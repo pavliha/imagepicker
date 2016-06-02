@@ -14,4 +14,8 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/editor', function () {
+    return view('editor');
+});
 Route::resource("api/photo","PhotoApiController");

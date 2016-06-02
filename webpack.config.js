@@ -3,10 +3,14 @@ var webpack = require('webpack');
 
 module.exports = {
 
-    entry: './resources/js/main.jsx',
+    entry: {
+        main:'./resources/js/main.jsx',
+        sw: "./resources/js/sw.js"
+    },
 
-    output: { path: __dirname, filename: 'public/js/main.js' },
+    output: {filename: '[name].js' },
 
+    devtool: 'source-map',
     module: {
         loaders: [
             {
@@ -25,15 +29,15 @@ module.exports = {
 
         ]
     }  ,plugins: [
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            mangle: false,
-            compress: {warnings: false},
-            sourceMaps:true,
-        })
+        // new webpack.DefinePlugin({
+        //     "process.env": {
+        //         NODE_ENV: JSON.stringify("production")
+        //     }
+        // }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     mangle: false,
+        //     compress: {warnings: false},
+        //     sourceMaps:true,
+        // })
     ]
 };

@@ -1,8 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import FontIcon from 'material-ui/FontIcon';
-import Slider from 'material-ui/Slider';
-import {red50} from 'material-ui/styles/colors';
+import FontIcon from "material-ui/FontIcon";
+import Slider from "material-ui/Slider";
+import {red50} from "material-ui/styles/colors";
 
 class Range extends React.Component {
 
@@ -25,7 +24,7 @@ class Range extends React.Component {
                     className="Slider"
                     min={-50}
                     max={50}
-                    step={2}
+                    step={5}
                     defaultValue={0}
                     value={this.props.value}
                     onChange={this.props.onChange}

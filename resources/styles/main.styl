@@ -1,6 +1,5 @@
-@import "base.styl"
-@import "normalize.styl"
-@lost flexbox flex;
+@import "base/normalize.styl"
+
 
 @import "components/Thumbnails.styl"
 @import "components/Thumbnail.styl"
@@ -12,16 +11,39 @@
 @import "components/ImagePreview.styl";
 @import "components/ButtonsBlock.styl";
 
+@import "components/Footer.styl";
+
+
+@import "pages/index.styl";
+
+
+
+@lost flexbox flex;
+
+
+.Footer{
+  img{
+    width 100%;
+  }
+}
+
+
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0; margin: 0;
+}
+
 body {
   padding 0;
   margin 0;
   background-color #fafafa
 }
-* { padding: 0; margin: 0; }
-html, body {
-  min-height: 100% !important;
-  height: 100%;
-}
+
+
+
 
 /**************Helpers*******************/
 

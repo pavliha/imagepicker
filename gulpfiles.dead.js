@@ -2,9 +2,13 @@
 import gulp from "gulp";
 import gulpLoadPlugins from "gulp-load-plugins";
 import autoprefixer from "autoprefixer";
+import babelify from "babelify";
 import cssnano from "cssnano";
 import lost from "lost";
 import browserify from "browserify";
+import vinylBuffer from "vinyl-buffer";
+import vinylSource from "vinyl-source-stream";
+import debowerify from "debowerify";
 import broWserSync from "browser-sync";
 import webpack from "webpack-stream";
 
@@ -129,3 +133,101 @@ gulp.task('apply-prod-environment', function () {
 
 gulp.task("production", ["apply-prod-environment", 'browserify:uglifyjs', "styles:minify", "html"]);
 
+
+
+
+//Dead code
+
+
+gulp.task("browserify", ()=> {
+
+    return $.sourcemaps.init()
+        .pipe(browserify({
+            entries: [JS.src],
+            debug: true
+        })
+            .on('error', (err) => {
+                console.error(err);
+                this.emit('end')
+            })
+
+            .transform("babelify")
+            .transform(debowerify)
+            .bundle())
+        .on('error', (err) => {
+            console.error(err);
+            this.emit('end')
+        })
+        .pipe(vinylSource('main.js')) // generated output file
+        .pipe(vinylBuffer())         // required for sourcemaps
+        .pipe($.sourcemaps.write("."))
+        .pipe(gulp.dest(JS.dest))
+        .pipe($.livereload())
+        .pipe(browserSync.stream({match: JS.browSync}));
+
+});
+
+gulp.task("browserify:serviceWorker", ()=> {
+
+    return $.sourcemaps.init()
+        .pipe(browserify({
+            entries: [JS.sw.src],
+            debug: true
+        })
+            .on('error', (err) => {
+                console.error(err);
+                this.emit('end')
+            })
+
+            .transform("babelify")
+            .transform(debowerify)
+            .bundle())
+        .on('error', (err) => {
+            console.error(err);
+            this.emit('end')
+        })
+        .pipe(vinylSource('sw.js')) // generated output file
+        .pipe(vinylBuffer())         // required for sourcemaps
+        .pipe($.sourcemaps.write("."))
+        .pipe(gulp.dest(JS.dest))
+        .pipe($.livereload())
+        .pipe(browserSync.stream({match: JS.browSync}));
+
+});
+
+gulp.task("browserify:uglifyjs", ()=> {
+
+    return browserify({
+        entries: [JS.src],
+        debug: true
+    })
+        .on('error', (err) => {
+            console.error(err);
+            this.emit('end')
+        })
+
+        .transform("babelify")
+        .transform(debowerify)
+        .bundle()
+        .on('error', (err) => {
+            console.error(err);
+            this.emit('end')
+        })
+        .pipe(vinylSource('main.js')) // generated output file
+        .pipe(vinylBuffer())         // required for sourcemaps
+        .pipe($.uglify())
+        .pipe(gulp.dest(JS.dest))
+        .pipe($.livereload());
+
+});
+
+gulp.task("uglifyjs", ()=> {
+
+    return gulp.src("public/js/main.js")
+        .pipe(vinylSource('main.min.js')) // generated output file
+        .pipe(vinylBuffer())         // required for sourcemaps
+        .pipe($.uglify())
+        .pipe(gulp.dest(JS.dest))
+        .pipe($.livereload());
+
+});

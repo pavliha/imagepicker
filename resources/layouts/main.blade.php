@@ -12,8 +12,7 @@
   <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png"/>
   <meta charset="UTF-8">
   <title>Image Filters Online - быстрая обработка фото бесплатно</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-  <link rel="stylesheet" href="/styles/main.css"/>
+  @yield("head")
 </head>
 <body>
 @yield("body")
