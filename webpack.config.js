@@ -5,9 +5,10 @@ module.exports = {
 
     entry: {
         main:'./resources/js/main.jsx',
-        sw: "./resources/js/sw.js"
+        sw: "./resources/js/sw.js",
+        preload: "./resources/js/preload.js"
     },
-
+    progress:true,
     output: {filename: '[name].js' },
 
     devtool: 'source-map',
@@ -28,7 +29,8 @@ module.exports = {
             }
 
         ]
-    }  ,plugins: [
+    },
+    plugins: [
         // new webpack.DefinePlugin({
         //     "process.env": {
         //         NODE_ENV: JSON.stringify("production")

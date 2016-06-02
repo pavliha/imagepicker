@@ -3,10 +3,6 @@
 @section('head')
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-
     <link rel="stylesheet" href="/styles/main.css"/>
 @endsection
 @section("body")
@@ -33,6 +29,5 @@
             <p>Image filters &copy; 2016</p>
         </div>
     </footer>
-    <script src="/js/sw.js"></script>
 @endsection
 
