@@ -4,12 +4,15 @@ var webpack = require('webpack');
 module.exports = {
 
     entry: {
-        main:'./resources/js/main.jsx',
-        sw: "./resources/js/sw.js",
-        preload: "./resources/js/preload.js"
+        main:'./resources/main.jsx',
+        sw: "./resources/sw.js",
+        preload: "./resources/preload.js"
     },
+    vendor: ["react"],
     progress:true,
-    output: {filename: '[name].js' },
+    output: {
+        filename: '[name].js'
+    },
 
     devtool: 'source-map',
     module: {
@@ -31,6 +34,13 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+        new VendorChunkPlugin('vendor'),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
+        })
         // new webpack.DefinePlugin({
         //     "process.env": {
         //         NODE_ENV: JSON.stringify("production")

@@ -12,10 +12,10 @@ import webpack from "webpack-stream";
 const browserSync = broWserSync.create();
 const $ = gulpLoadPlugins();
 const JS = {
-    watch: 'resources/js/**/*.jsx',
-    src: 'resources/js/main.jsx',
-    dest: 'public/js/',
-    browSync: 'public/js/*.js'
+    watch: 'resources/**/*.jsx',
+    src: 'resources/main.jsx',
+    dest: 'public/',
+    browSync: 'public/*.js'
 };
 const STYLES = {
     src: 'resources/styles/**/*.styl',
@@ -122,10 +122,15 @@ gulp.task("webpack", ()=> {
         .pipe(webpack(require('./webpack.config.js')))
         .pipe(gulp.dest(JS.dest));
 });
+gulp.task("webpack:production", ()=> {
+    gulp.src(JS.src)
+        .pipe(webpack(require('./webpack.production.config')))
+        .pipe(gulp.dest(JS.dest));
+});
 
 gulp.task('apply-prod-environment', function () {
     process.env.NODE_ENV = 'production';
 });
 
-gulp.task("production", ["apply-prod-environment", 'browserify:uglifyjs', "styles:minify", "html"]);
+gulp.task("production", ["apply-prod-environment", 'webpack:production', "styles:minify", "html"]);
 

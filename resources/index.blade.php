@@ -17,7 +17,7 @@
 
     </section>
     <section class="center">
-        <br>
+        <br>N
         <br>
         <br>
         <a  href="/editor" class="waves-effect waves-light btn-large">Открыть редактор</a>
@@ -29,5 +29,6 @@
             <p>Image filters &copy; 2016</p>
         </div>
     </footer>
+    <script src="/preload.js"></script>
 @endsection
 
