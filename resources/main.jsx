@@ -11,6 +11,8 @@ import Thumbnails from "./components/Thumbnails.jsx";
 import ImageUploader from "./components/ImageUploader.jsx";
 import EditPanel from "./components/EditPanel.jsx";
 import TopBar from "./components/TopBar.jsx";
+import Footer from "./components/Footer.jsx";
+
 injectTapEventPlugin();
 class Main extends React.Component {
 
@@ -49,7 +51,8 @@ class Main extends React.Component {
                 </section>
 
                 <Thumbnails photos={this.state.photos} className="Thumbnails"/>
-
+                
+                <Footer/>
             </div>
         )
 

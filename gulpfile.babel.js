@@ -112,9 +112,16 @@ gulp.task("styles:minify", ()=> {
 });
 
 gulp.task("html", ()=> {
-    gulp.src("storage/framework/views/**/*.php")
-        .pipe($.htmlmin({collapseWhitespace: true}));
-    gulp.dest("storage/framework/views")
+    var opts = {
+        collapseWhitespace:    true,
+        removeAttributeQuotes: true,
+        removeComments:        true,
+        minifyJS:              true
+    };
+
+    return gulp.src('./storage/framework/views/*')
+        .pipe($.htmlmin(opts))
+        .pipe(gulp.dest('./storage/framework/views/'));
 });
 
 gulp.task("webpack", ()=> {
@@ -132,5 +139,5 @@ gulp.task('apply-prod-environment', function () {
     process.env.NODE_ENV = 'production';
 });
 
-gulp.task("production", ["apply-prod-environment", 'webpack:production', "styles:minify", "html"]);
+gulp.task("build", ["apply-prod-environment", 'webpack:production', "styles:minify", "html"]);
 

@@ -9,12 +9,15 @@ module.exports = {
         preload: "./resources/preload.js",
         react: ["react","react-dom"],
     },
+
     progress:true,
+
     output: {
         filename: '[name].js'
     },
 
     devtool: 'cheap-module-source-map',
+
     module: {
         loaders: [
             {
@@ -33,6 +36,7 @@ module.exports = {
 
         ]
     },
+
     plugins: [
 
         new webpack.optimize.CommonsChunkPlugin('react', 'react.js', Infinity),

@@ -6,15 +6,18 @@ module.exports = {
     entry: {
         main:'./resources/main.jsx',
         sw: "./resources/sw.js",
-        preload: "./resources/preload.js"
+        preload: "./resources/preload.js",
+        react: ["react","react-dom"],
     },
-    vendor: ["react"],
+
     progress:true,
+
     output: {
         filename: '[name].js'
     },
 
     devtool: 'source-map',
+
     module: {
         loaders: [
             {
@@ -33,14 +36,17 @@ module.exports = {
 
         ]
     },
+
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-        new VendorChunkPlugin('vendor'),
+        new webpack.optimize.CommonsChunkPlugin('react', 'react.js', Infinity),
+
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify("production")
             }
-        })
+        }),
+        new webpack.optimize.DedupePlugin(),
+
         // new webpack.DefinePlugin({
         //     "process.env": {
         //         NODE_ENV: JSON.stringify("production")
