@@ -9,12 +9,17 @@
   <meta name="mobile-web-app-capable" content="yes"/>
   <meta name="application-name" content="Image Filters Online - быстрая обработка фото бесплатно"/>
   <meta name="theme-color" content="#009db5"/>
-  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png"/>
   <meta charset="UTF-8">
+  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  <link rel="stylesheet" href="/styles/main.css"/>
   <title>Image Filters Online - быстрая обработка фото бесплатно</title>
   @yield("head")
 </head>
 <body>
 @yield("body")
+<script src="/preload.js"></script>
+
 </body>
 </html>

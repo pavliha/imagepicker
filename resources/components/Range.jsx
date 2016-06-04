@@ -1,5 +1,6 @@
 import React from "react";
 import FontIcon from "material-ui/FontIcon";
+import Slider from "material-ui/Slider";
 import {red50} from "material-ui/styles/colors";
 
 class Range extends React.Component {
@@ -18,11 +19,13 @@ class Range extends React.Component {
         return (
             <div className="Range">
                 <div className={this.labelColor(this.props.disabled)}>{this.props.label}</div>
-                <input type="range"
+                <Slider
                     disabled={this.props.disabled}
+                    className="Slider"
                     min={-50}
                     max={50}
                     step={5}
+                    defaultValue={0}
                     value={this.props.value}
                     onChange={this.props.onChange}
                 />

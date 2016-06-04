@@ -56,7 +56,7 @@ class InstagraphEffect
 
     public static function applyAllEffects($pathToSourceImage, $pathToDestFolder){
 
-        $allEffects = "bubbles sepia sepia2 sharpen emboss cool old old2 old3 light aqua boost boost2 gray antique blackwhite blur vintage concentrate hermajesty everglow freshblue tender dream frozen forest rain orangepeel darken summer retro country washed";
+        $allEffects = "bubbles sepia sepia2 sharpen emboss cool old old2 old3 light aqua boost boost2 gray antique blur vintage concentrate hermajesty everglow freshblue tender dream frozen forest rain orangepeel darken summer retro country washed";
 
         $arrayOfEffects = explode(" ", $allEffects);
 

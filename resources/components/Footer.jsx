@@ -9,7 +9,9 @@ class Footer extends React.Component {
     }
 
     render() {
-
+        if(!this.props.enabled){
+            return false;
+        }
         return (
             <footer className="Footer">
                 <div class="Footer-left">

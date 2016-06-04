@@ -7,6 +7,7 @@ import lost from "lost";
 import browserify from "browserify";
 import broWserSync from "browser-sync";
 import webpack from "webpack-stream";
+import merge from "merge-stream";
 
 
 const browserSync = broWserSync.create();
@@ -35,11 +36,12 @@ const FONTS = {
 };
 
 
-gulp.task('watch', ['webpack', 'styles'], ()=> {
+gulp.task('watch', ['webpack', 'styles',"sw"], ()=> {
 
     $.livereload.listen();
 
     gulp.watch(JS.watch, ['webpack']);
+    gulp.watch("resources/sw.js", ['sw']);
     gulp.watch(IMAGES.src, ['images']);
     gulp.watch(STYLES.src, ['styles']);
     gulp.watch(BLADE.src, ['blade']);
@@ -129,6 +131,20 @@ gulp.task("webpack", ()=> {
         .pipe(webpack(require('./webpack.config.js')))
         .pipe(gulp.dest(JS.dest));
 });
+
+gulp.task("sw", ()=> {
+    let sw = gulp.src("resources/sw.js")
+        .pipe($.babel())
+        .pipe(gulp.dest("public/"));
+
+    let preload = gulp.src("resources/preload.js")
+        .pipe($.babel())
+        .pipe(gulp.dest("public/"));
+
+    merge(sw, preload);
+
+});
+
 gulp.task("webpack:production", ()=> {
     gulp.src(JS.src)
         .pipe(webpack(require('./webpack.production.config')))
@@ -139,5 +155,5 @@ gulp.task('apply-prod-environment', function () {
     process.env.NODE_ENV = 'production';
 });
 
-gulp.task("build", ["apply-prod-environment", 'webpack:production', "styles:minify", "html"]);
+gulp.task("build", ["apply-prod-environment","sw",'webpack:production', "styles:minify", "html"]);
 

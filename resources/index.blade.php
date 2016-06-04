@@ -2,8 +2,6 @@
 
 @section('head')
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-    <link rel="stylesheet" href="/styles/main.css"/>
 @endsection
 @section("body")
     <header class="banner">
@@ -17,7 +15,7 @@
 
     </section>
     <section class="center">
-        <br>N
+        <br>
         <br>
         <br>
         <a  href="/editor" class="waves-effect waves-light btn-large">Открыть редактор</a>
@@ -29,6 +27,6 @@
             <p>Image filters &copy; 2016</p>
         </div>
     </footer>
-    <script src="/preload.js"></script>
+
 @endsection
 

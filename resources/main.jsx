@@ -51,8 +51,7 @@ class Main extends React.Component {
                 </section>
 
                 <Thumbnails photos={this.state.photos} className="Thumbnails"/>
-                
-                <Footer/>
+                <Footer enabled={this.state.photos}/>
             </div>
         )
 

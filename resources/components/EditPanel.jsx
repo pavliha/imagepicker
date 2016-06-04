@@ -1,3 +1,4 @@
+
 import React from "react";
 import Range from "./Range.jsx";
 import FlatButton from "material-ui/FlatButton";
@@ -109,7 +110,6 @@ class EditPanel extends React.Component {
 
     handleReset(){
         this.setState(this.defaultState);
-
         Caman('#EditImage',function() {
             this.revert(false);
             this.render();

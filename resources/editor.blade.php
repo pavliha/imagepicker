@@ -8,7 +8,6 @@
 @endsection
 @section("body")
     <section id="app"></section>
-
     <script src="/react.js"></script>
     <script async src="/main.js"></script>
 @endsection

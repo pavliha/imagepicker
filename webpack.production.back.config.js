@@ -5,6 +5,8 @@ module.exports = {
 
     entry: {
         main:'./resources/main.jsx',
+        sw: "./resources/sw.js",
+        preload: "./resources/preload.js",
         react: ["react","react-dom"],
     },
 
@@ -14,7 +16,7 @@ module.exports = {
         filename: '[name].js'
     },
 
-    devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
 
     module: {
         loaders: [
@@ -36,9 +38,23 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('react', 'react.js',Infinity),
 
+        new webpack.optimize.CommonsChunkPlugin('react', 'react.js', Infinity),
+        new webpack.optimize.CommonsChunkPlugin('sw', 'sw.js', Infinity),
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
+        }),
         new webpack.optimize.DedupePlugin(),
 
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+                screw_ie8: true
+            },
+            comments: false,
+            sourceMap: false
+        })
     ]
 };

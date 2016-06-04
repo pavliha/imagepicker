@@ -1,59 +1,25 @@
 var path = require('path');
 var webpack = require('webpack');
+var config = require("./webpack.config");
 
-module.exports = {
+config.debugTool = "cheap-module-source-map";
 
-    entry: {
-        main:'./resources/main.jsx',
-        sw: "./resources/sw.js",
-        preload: "./resources/preload.js",
-        react: ["react","react-dom"],
-    },
+config.plugins = [
 
-    progress:true,
+    new webpack.DefinePlugin({
+        "process.env": {
+            NODE_ENV: JSON.stringify("production")
+        }
+    }),
 
-    output: {
-        filename: '[name].js'
-    },
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false,
+            screw_ie8: true
+        },
+        comments: false,
+        sourceMap: false
+    })
+];
 
-    devtool: 'cheap-module-source-map',
-
-    module: {
-        loaders: [
-            {
-                test: /.jsx?$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-
-
-            },
-            {
-                // I want to uglify with mangling only app files, not thirdparty libs
-                test: /.*\/app\/.*\.js$/,
-                exclude: /.spec.js/, // excluding .spec files
-                loader: "uglify"
-            }
-
-        ]
-    },
-
-    plugins: [
-
-        new webpack.optimize.CommonsChunkPlugin('react', 'react.js', Infinity),
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
-            }
-        }),
-        new webpack.optimize.DedupePlugin(),
-
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false,
-                screw_ie8: true
-            },
-            comments: false,
-            sourceMap: false
-        })
-    ]
-};
+module.exports = config;

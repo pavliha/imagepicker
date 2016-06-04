@@ -59,7 +59,9 @@ class ImageUploader extends React.Component {
     readTheImage(inputFile) {
         let reader = new window.FileReader();
         reader.onload = ()=> {
-            this.setState({previewImage: reader.result});
+            this.setState({
+                previewImage: reader.result
+            });
         };
         reader.readAsDataURL(inputFile);
 
@@ -67,6 +69,7 @@ class ImageUploader extends React.Component {
 
     handleResponse(res) {
         this.setState({
+
             buttonName: " Готово! ",
             buttonActive: true,
             open: true,
@@ -81,6 +84,9 @@ class ImageUploader extends React.Component {
                 message: '',
             });
         }, 1000);
+
+
+
         this.props.onPhotosLoad(res);
     }
 
@@ -106,8 +112,9 @@ class ImageUploader extends React.Component {
     }
 
     handleInputFileChange(e) {
-        e.preventDefault();
 
+        e.preventDefault();
+        
         let inputFile = e.target.files[0];
 
         this.readTheImage(inputFile);
