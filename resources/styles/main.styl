@@ -3,7 +3,7 @@
 
 @import "components/Thumbnails.styl"
 @import "components/Thumbnail.styl"
-@import "components/EditImage.styl"
+@import "components/PreviewPanel.styl"
 @import "components/ImageUploaderCard.styl"
 @import "components/Range.styl";
 @import "components/EditPanel.styl";
@@ -48,12 +48,15 @@ body {
 /**************Helpers*******************/
 
 .flexbox-container {
-  background-image url(../images/background.jpg);
-  padding-bottom 40px;
-  background-color #ffffff;
   justify-content center;
   flex-wrap wrap;
   display: flex;
+}
+
+.editor-background{
+  background-image url(../images/background.jpg);
+  padding-bottom 40px;
+  background-color #ffffff;
 }
 
 .center {

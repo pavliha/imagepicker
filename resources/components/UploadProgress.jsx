@@ -1,6 +1,6 @@
 import React from "react";
 import LinearProgress from "material-ui/LinearProgress";
-import EventEmitter from "wolfy87-eventemitter";
+
 class UploadProgress extends React.Component {
 
     constructor(props) {
@@ -10,11 +10,8 @@ class UploadProgress extends React.Component {
         }
     }
 
-    componentDidMount() {
-        let ee = new EventEmitter();
-
-        ee.addListener('uploadProgress', this.handleProgress.bind(this));
-
+    componentWillMount() {
+        ee.on('upload-progress', this.handleProgress.bind(this));
     }
 
     handleProgress(percent) {
@@ -23,7 +20,6 @@ class UploadProgress extends React.Component {
             display:true,
         });
     }
-
     render() {
 
         return (

@@ -11,8 +11,14 @@ class EditPanel extends React.Component {
         exposure: 0,
         sepia: 0,
         hue:0,
+        disabled:true
     };
 
+    componentDidMount(){
+        ee.on("preview-image",()=>{
+            this.setState({disabled:false})
+        })
+    }
     constructor(props) {
         super(props);
         this.state = this.defaultState;
@@ -25,37 +31,37 @@ class EditPanel extends React.Component {
         return (
             <div className="EditPanel">
                 <Range
-                    disabled={this.props.disabled}
+                    disabled={this.state.disabled}
                     label="Яркость"
                     value={this.state.brightness}
                     onChange={this.handleBrightness.bind(this)}
                 />
                 <Range
-                    disabled={this.props.disabled}
+                    disabled={this.state.disabled}
                     label="Насыщенность"
                     value={this.state.saturation}
                     onChange={this.handleSaturation.bind(this)}
                 />
                 <Range
-                    disabled={this.props.disabled}
+                    disabled={this.state.disabled}
                     label="Экспозиция"
                     value={this.state.exposure}
                     onChange={this.handleExposure.bind(this)}
                 />
                 <Range
-                    disabled={this.props.disabled}
+                    disabled={this.state.disabled}
                     label="Сепия"
                     value={this.state.sepia}
                     onChange={this.handleSepia.bind(this)}
                 />
                 <Range
-                    disabled={this.props.disabled}
+                    disabled={this.state.disabled}
                     label="Оттенок"
                     value={this.state.hue}
                     onChange={this.handleHue.bind(this)}
                 />
                 <div className="center">
-                    <FlatButton label="Сбросить"  disabled={this.props.disabled} onClick={this.handleReset.bind(this)} />
+                    <FlatButton label="Сбросить"  disabled={this.state.disabled} onClick={this.handleReset.bind(this)} />
                 </div>
 
             </div>

@@ -5,11 +5,18 @@ class Footer extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            hidden:true
+        }
     }
 
+    componentWillMount(){
+        ee.on("photos-load",()=>{
+           this.setState({hidden:false})
+        });
+    }
     render() {
-        if(!this.props.enabled){
+        if(this.state.hidden){
             return false;
         }
         return (

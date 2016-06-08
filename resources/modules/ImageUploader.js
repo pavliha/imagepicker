@@ -1,27 +1,21 @@
 
-import EventEmitter from "wolfy87-eventemitter";
 import PhotoSender from "./PhotoSender";
 
-const ee = new EventEmitter();
-
 export default class ImageUploader{
+
     constructor(inputFile){
         this.inputFile = inputFile;
     }
     onProgress(e){
         if (e.lengthComputable) {
             var percentage = Math.round((e.loaded * 100) / e.total);
-            ee.emitEvent("uploadProgress",percentage)
+            ee.emit("upload-progress",percentage)
 
         }
     }
-    onPreviewImage(){
-        ee.emitEvent("loadImage",image)
-    }
-
     onResponse(response){
         console.log(response);
-        ee.emitEvent("loadImage",response)
+        ee.emit("photos-load",response)
     }
     upload(){
 
