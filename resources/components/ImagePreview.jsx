@@ -1,21 +1,39 @@
 import React from "react";
+import EventEmitter from "wolfy87-eventemitter";
 
-class ImagePreview extends React.Component {
+
+export default class ImagePreview extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            display:false,
+        }
     }
 
+    componentDidMount(){
+
+
+        let ee = new EventEmitter();
+
+        ee.addListener('previewImage', this.handlePreviewImage.bind(this));
+
+    }
+    handlePreviewImage(previewImage){
+        console.log(previewImage);
+
+        this.setState({
+            previewImage: previewImage,
+            display:true,
+        });
+    }
     render() {
 
         if (this.props.previewImage) {
 
-            console.log(this.props.previewImage);
-
             return (
                 <div className="ImagePreview">
-                    <img src={this.props.previewImage} className="img" id="EditImage"/>
+                    <img src={this.state.previewImage} className="img" id="EditImage"/>
                 </div>
             )
         }
@@ -23,5 +41,3 @@ class ImagePreview extends React.Component {
 
     }
 }
-
-export default ImagePreview;

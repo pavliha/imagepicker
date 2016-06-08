@@ -71,6 +71,8 @@
     "react-dom": "^15.0.2",
     "react-progress-2": "^4.2.1",
     "react-tap-event-plugin": "latest",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "event-emitter": "latest",
+    "wolfy87-eventemitter": "latest"
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 
 
-class ButtonsBlock extends React.Component {
+export default class ButtonsGroup extends React.Component {
 
     constructor(props) {
         super(props);
@@ -17,5 +17,3 @@ class ButtonsBlock extends React.Component {
 
     }
 }
-
-export default ButtonsBlock;

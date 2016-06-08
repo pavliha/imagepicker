@@ -4,19 +4,14 @@
 
 import React from "react";
 import PhotoSender from "~/resources/modules/PhotoSender";
+import ImageUploader from "~/resources/modules/ImageUploader";
+import UploadProgress from "./UploadProgress.jsx";
 import ImageButton from "./ImageButton.jsx";
-import LinearProgress from "material-ui/LinearProgress";
-import Snackbar from "material-ui/Snackbar";
 import ImagePreview from "./ImagePreview.jsx";
-import ButtonsBlock from "./ButtonsBlock.jsx";
+import ButtonsGroup from "./ButtonsGroup.jsx";
 
 
-function hif(value, condition) {
-    if (condition) {
-        return value;
-    }
-}
-class ImageUploader extends React.Component {
+class EditImage extends React.Component {
 
 
     defalutState = {
@@ -38,23 +33,25 @@ class ImageUploader extends React.Component {
 
     render() {
         return (
-            <div className="ImageUploader">
-                <ImagePreview previewImage={this.state.previewImage}/>
-                <ButtonsBlock expanded={!this.state.previewImage}>
-                    <ImageButton
-                        disabled={!this.state.buttonActive}
-                        onChange={this.handleInputFileChange.bind(this)}>
-                        {this.state.buttonName}
-                    </ImageButton>
-                    <div className={this.state.previewImage ? "": "hidden"}>
-                        <LinearProgress mode="determinate" value={this.state.percent}/>
-                    </div>
-                </ButtonsBlock>
-                <Snackbar open={this.state.open} message={this.state.message} autoHideDuration={4000}/>
+            <div className="EditImage">
+                <ImagePreview/>
+                <ButtonsGroup>
+                    <ImageButton  onChange={this.uploadImage.bind(this)}/>
+                </ButtonsGroup>
+                <UploadProgress/>
             </div>
         );
     }
 
+    uploadImage(e) {
+
+        let inputFile = e.target.files[0];
+        console.log(inputFile);
+        let uploader = new ImageUploader(inputFile);
+        uploader.upload()
+
+
+    }
 
     readTheImage(inputFile) {
         let reader = new window.FileReader();
@@ -84,7 +81,6 @@ class ImageUploader extends React.Component {
                 message: '',
             });
         }, 1000);
-
 
 
         this.props.onPhotosLoad(res);
@@ -130,4 +126,4 @@ class ImageUploader extends React.Component {
 
 }
 
-export default ImageUploader;
+export default EditImage;

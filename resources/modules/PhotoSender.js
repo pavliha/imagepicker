@@ -18,7 +18,7 @@ class PhotoSender {
 
     send() {
         var that = this;
-        return $.ajax("api/photo", {
+        return window.$.ajax("api/photo", {
             method: "POST",
             data: that.formData,
             chunking: true,

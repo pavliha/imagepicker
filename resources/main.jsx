@@ -8,10 +8,11 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Thumbnails from "./components/Thumbnails.jsx";
-import ImageUploader from "./components/ImageUploader.jsx";
+import EditImage from "./components/EditImage.jsx";
 import EditPanel from "./components/EditPanel.jsx";
 import TopBar from "./components/TopBar.jsx";
 import Footer from "./components/Footer.jsx";
+//import ImageUploader from "./components/ImageUploader.jsx";
 
 injectTapEventPlugin();
 class Main extends React.Component {
@@ -38,16 +39,8 @@ class Main extends React.Component {
                 <TopBar/>
 
                 <section className="flexbox-container">
-
-
-                        <ImageUploader
-                            onImageButtonClick={this.state.ImageButtonClick}
-                            onFormChange={this.handleFileChange.bind(this)}
-                            onPhotosLoad={this.handlePhotosLoad.bind(this)}
-                        />
-
+                    <EditImage/>
                     <EditPanel disabled={this.state.PanelDisabled}/>
-
                 </section>
 
                 <Thumbnails photos={this.state.photos} className="Thumbnails"/>

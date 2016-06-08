@@ -184,7 +184,7 @@ table {
   cursor: pointer;
   max-width: 300px;
 }
-.ImageUploader {
+.EditImage {
   border: 2px solid rgba(0,0,0,0.1);
   border-radius: 3px;
   box-shadow: rgba(0,0,0,0.118) 0 1px 6px, rgba(0,0,0,0.118) 0px 1px 4px;
