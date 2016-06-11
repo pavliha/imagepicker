@@ -12,6 +12,7 @@ import PreviewPanel from "./components/PreviewPanel.jsx";
 import EditPanel from "./components/EditPanel.jsx";
 import TopBar from "./components/TopBar.jsx";
 import Footer from "./components/Footer.jsx";
+import UploadProgress from "./components/UploadProgress.jsx";
 import emitter from "event-emitter";
 
 
@@ -31,7 +32,7 @@ class Main extends React.Component {
         return (
             <div>
                 <TopBar/>
-
+                <UploadProgress/>
                 <section className="flexbox-container editor-background">
                     <PreviewPanel/>
                     <EditPanel/>

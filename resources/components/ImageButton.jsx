@@ -1,6 +1,7 @@
 import React from "react";
 import RaisedButton from "material-ui/RaisedButton";
 import browser from "detect-browser";
+import ImageUploader from "../modules/ImageUploader";
 class ImageButton extends React.Component {
 
     styles = {
@@ -35,7 +36,7 @@ class ImageButton extends React.Component {
                 <input
                     type="file"
                     style={this.styles.FirefoxImageInput}
-                    onChange={this.props.onChange}
+                    onChange={this.uploadImage.bind(this)}
                 />
             )
         }
@@ -50,10 +51,37 @@ class ImageButton extends React.Component {
                 <input
                     type="file"
                     style={this.styles.ImageInput}
-                    onChange={this.props.onChange}
+                    onChange={this.uploadImage.bind(this)}
                 />
             </RaisedButton>
         );
+    }
+
+    uploadImage(e) {
+
+        let inputFile = e.target.files[0];
+
+        this.readTheImage(inputFile);
+
+        let uploader = new ImageUploader(inputFile);
+
+        uploader.upload()
+
+
+    }
+
+    readTheImage(inputFile) {
+
+        let reader = new window.FileReader();
+
+        reader.onload = ()=> {
+            let image = reader.result;
+            ee.emit('preview-image', image);
+
+        };
+
+        reader.readAsDataURL(inputFile);
+
     }
 }
 

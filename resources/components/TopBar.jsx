@@ -2,7 +2,7 @@ import React from "react";
 import AppBar from "material-ui/AppBar";
 import IconButton from "material-ui/IconButton";
 import ActionHome from "material-ui/svg-icons/navigation/arrow-back";
-
+import ImageButton from "./ImageButton.jsx";
 class TopBar extends React.Component {
 
     styles = {
@@ -29,6 +29,8 @@ class TopBar extends React.Component {
             <AppBar
                 iconElementLeft={<IconButton onClick={this.goBackHome.bind(this)}><ActionHome /></IconButton>}
                 title={<span style={this.styles.title}>Image filters online</span>}
+                iconElementRight={<ImageButton>Выбрать фото</ImageButton>
+}
             />
         );
     }

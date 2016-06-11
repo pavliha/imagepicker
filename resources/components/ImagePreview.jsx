@@ -21,24 +21,30 @@ export default class ImagePreview extends React.Component {
         });
 
         let img = new Image();
+
         img.src = this.state.previewImage;
-        img.onload = ()=>{
-            let canvas = new fabric.Canvas('EditImage');
-            canvas.setWidth(500);
-            canvas.setHeight(700);
-            let imgInstance = new fabric.Image(img, {
-                width: canvas.width,
-                left: 100,
-                top: 100,
-                angle: 0,
-                opacity: 0.85
-            });
-            canvas.add(imgInstance);
-        };
+        let imagePreview = document.querySelector(".PreviewPanel");
+        console.log(imagePreview.offsetWidth);
+
+        let canvas = new fabric.Canvas('EditImage');
+        canvas.setWidth(imagePreview.offsetWidth-10); //hot fix make canvas width a bit smaller
+        canvas.setHeight(imagePreview.offsetHeight);
+        img.onload = this.addImage(img,canvas)
 
 
     }
 
+    addImage(img,canvas){
+        let imgInstance = new fabric.Image(img, {
+            width: canvas.width,
+            left: 0,
+            top: 0,
+            angle: 0,
+            opacity:1,
+        });
+        canvas.add(imgInstance);
+
+    }
     render() {
 
         if (this.state.previewImage) {
