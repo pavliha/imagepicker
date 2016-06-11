@@ -206,7 +206,8 @@ table {
     max-width: 450px;
   }
 }
-.PreviewPanel {
+.PreviewPanel,
+.PreviewPanel--larger {
   border: 2px solid rgba(0,0,0,0.1);
   border-radius: 3px;
   box-shadow: rgba(0,0,0,0.118) 0 1px 6px, rgba(0,0,0,0.118) 0px 1px 4px;
@@ -217,6 +218,9 @@ table {
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
+}
+.PreviewPanel--larger {
+  width: 60%;
 }
 @media (max-width: 600px) {
   .PreviewPanel {
@@ -269,16 +273,24 @@ table {
 .label--disabled--disabled {
   color: #808080;
 }
-.EditPanel {
-  padding: 20px;
+.EditPanel,
+.EditPanel--larger,
+.EditPanel--smaller {
+  padding: 5px;
   border-radius: 1px;
   box-shadow: rgba(0,0,0,0.118) 0 1px 6px, rgba(0,0,0,0.118) 0px 1px 4px;
-  margin: 0 20px;
+  margin: 0 5px;
   margin-top: 40px;
-  width: 53%;
+  width: 45%;
   min-width: 520px;
   min-height: 200px;
   background-color: #fff;
+}
+.EditPanel--larger {
+  width: 60%;
+}
+.EditPanel--smaller {
+  width: 40%;
 }
 @media (max-width: 600px) {
   .EditPanel {
@@ -312,6 +324,7 @@ table {
   border-radius: 2px;
 }
 .ImagePreview .img {
+  height: 400px;
   text-align: center;
   width: 100%;
 }

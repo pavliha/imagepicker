@@ -46,6 +46,7 @@ export default class PreviewPanel extends React.Component {
             this.setState(this.defalutState)
         });
     }
+    
     render() {
         return (
             <div className="PreviewPanel">
@@ -72,13 +73,15 @@ export default class PreviewPanel extends React.Component {
     }
 
     readTheImage(inputFile) {
+        
         let reader = new window.FileReader();
-
+        
         reader.onload = ()=> {
             let image = reader.result;
             ee.emit('preview-image', image);
 
         };
+        
         reader.readAsDataURL(inputFile);
 
     }

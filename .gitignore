@@ -6,3 +6,10 @@ Homestead.json
 .env
 /.idea
 /public/styles
+/public/main.js
+/public/main.js.map
+/public/photos
+/public/preload.js.map
+/public/react.js
+/public/react.js.map
+

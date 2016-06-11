@@ -30,7 +30,6 @@ class Main extends React.Component {
 
         return (
             <div>
-
                 <TopBar/>
 
                 <section className="flexbox-container editor-background">

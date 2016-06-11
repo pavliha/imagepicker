@@ -14,7 +14,6 @@ export default class ImageUploader{
         }
     }
     onResponse(response){
-        console.log(response);
         ee.emit("photos-load",response)
     }
     upload(){

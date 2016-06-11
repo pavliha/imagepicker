@@ -63,7 +63,7 @@ autoWatch = true;
 browsers = ['Firefox'];
 
 if (!process.env.TRAVISCI) {
-  browsers.push('Chrome')
+  browsers.push('Chrome');
 
   if (require('os').platform() === 'darwin') {
     browsers.push('Safari')

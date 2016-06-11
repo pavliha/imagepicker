@@ -1,13 +1,22 @@
 .EditPanel {
-  padding 20px;
+  padding 5px;
   border-radius: 1px;
   box-shadow: rgba(0, 0, 0, 0.117647) 0 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-  margin 0 20px;
+  margin 0 5px;
   margin-top 40px;
-  width 53%;
+  width 45%;
   min-width 520px;
   min-height 200px;
   background-color #FFFFFF;
+}
+.EditPanel--larger {
+  @extend .EditPanel;
+  width 60%;
+
+}
+.EditPanel--smaller {
+  @extend .EditPanel;
+  width 40%;
 
 }
 
