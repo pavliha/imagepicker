@@ -13,7 +13,7 @@ import merge from "merge-stream";
 const browserSync = broWserSync.create();
 const $ = gulpLoadPlugins();
 const JS = {
-    watch: 'resources/**/*.jsx',
+    watch: 'resources/**/*.{jsx,js}',
     src: 'resources/main.jsx',
     dest: 'public/',
     browSync: 'public/*.js'

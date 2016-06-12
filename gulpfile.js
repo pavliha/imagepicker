@@ -41,7 +41,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var browserSync = _browserSync2.default.create();
 var $ = (0, _gulpLoadPlugins2.default)();
 var JS = {
-    watch: 'resources/**/*.jsx',
+    watch: 'resources/**/*.{jsx,js}',
     src: 'resources/main.jsx',
     dest: 'public/',
     browSync: 'public/*.js'

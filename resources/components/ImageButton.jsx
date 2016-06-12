@@ -56,33 +56,15 @@ class ImageButton extends React.Component {
             </RaisedButton>
         );
     }
-
-    uploadImage(e) {
-
-        let inputFile = e.target.files[0];
-
-        this.readTheImage(inputFile);
-
-        let uploader = new ImageUploader(inputFile);
-
-        uploader.upload()
-
-
+    
+    uploadImage(){
+      
+        let imageUploader = new ImageUploader();
+        imageUploader.openUploadBox()
+            .then(imageUploader.upload);
+        
     }
-
-    readTheImage(inputFile) {
-
-        let reader = new window.FileReader();
-
-        reader.onload = ()=> {
-            let image = reader.result;
-            ee.emit('preview-image', image);
-
-        };
-
-        reader.readAsDataURL(inputFile);
-
-    }
+    
 }
 
 export default ImageButton;
