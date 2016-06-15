@@ -1,7 +1,6 @@
 
 import React from "react";
 import Range from "./Range.jsx";
-import FlatButton from "material-ui/FlatButton";
 import ArrowButton from "./ArrowButton.jsx";
 
 class EditPanel extends React.Component {
@@ -63,7 +62,7 @@ class EditPanel extends React.Component {
                     onChange={this.handleHue.bind(this)}
                 />
                 <div className="center">
-                    <FlatButton label="Сбросить"  disabled={this.state.disabled} onClick={this.handleReset.bind(this)} />
+                    <button label="Сбросить"  disabled={this.state.disabled} onClick={this.handleReset.bind(this)} />
                 </div>
 
             </div>

@@ -1,8 +1,9 @@
-@extends("layouts.main")
+@extends("main")
 
 @section('head')
-    <!-- Compiled and minified CSS -->
+
 @endsection
+
 @section("body")
     <header class="banner">
         <div>

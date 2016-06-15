@@ -4,8 +4,7 @@
 
 import React from "react";
 import ImagePreview from "./ImagePreview.jsx";
-//import ImageButton from "./ImageButton.jsx";
-//import ButtonsGroup from "./ButtonsGroup.jsx";
+
 
 export default class PreviewPanel extends React.Component {
 

@@ -41,8 +41,7 @@ export default class ImageUploader {
         this.readImage();
 
         let photoSender = new PhotoSender(this.inputFile);
-        photoSender.send()
-            .uploadProgress(this.onProgress)
+        photoSender.send(this.onProgress)
             .done(this.onResponse);
 
     }

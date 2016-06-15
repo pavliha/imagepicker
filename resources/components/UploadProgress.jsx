@@ -1,5 +1,4 @@
 import React from "react";
-import LinearProgress from "material-ui/LinearProgress";
 
 class UploadProgress extends React.Component {
 
@@ -25,7 +24,9 @@ class UploadProgress extends React.Component {
         return (
             <div className="UploadProgress">
                 <div className={this.state.display ? "": "hidden"}>
-                    <LinearProgress mode="determinate" value={this.state.percent}/>
+                    <div class="progress">
+                        <div class="determinate" style={{width: this.state.percent+"%"}}></div>
+                    </div>
                 </div>
             </div>
         );

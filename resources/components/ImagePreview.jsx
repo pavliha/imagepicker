@@ -1,6 +1,8 @@
 import React from "react";
 import fb from "fabric";
+
 const fabric = fb.fabric;
+
 export default class ImagePreview extends React.Component {
 
     constructor(props) {

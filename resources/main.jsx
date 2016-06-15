@@ -4,9 +4,6 @@
 
 import React from "react";
 import {render} from "react-dom";
-import injectTapEventPlugin from "react-tap-event-plugin";
-import getMuiTheme from "material-ui/styles/getMuiTheme";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Thumbnails from "./components/Thumbnails.jsx";
 import PreviewPanel from "./components/PreviewPanel.jsx";
 import EditPanel from "./components/EditPanel.jsx";
@@ -17,7 +14,6 @@ import emitter from "event-emitter";
 
 
 window.ee = emitter(); //Initialize event emitter and listeners
-injectTapEventPlugin(); //Initialize Material UI theme
 
 class Main extends React.Component {
 
@@ -48,10 +44,5 @@ class Main extends React.Component {
 
 }
 
-const App = () => (
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
-        <Main />
-    </MuiThemeProvider>
-);
 
-render(<App/>, document.getElementById("app"));
+render(<Main />, document.getElementById("app"));

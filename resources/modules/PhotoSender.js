@@ -16,9 +16,16 @@ class PhotoSender {
         this.percent = null;
     }
 
-    send() {
+    send(progress) {
         var that = this;
         return window.$.ajax("api/photo", {
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+
+                xhr.upload.addEventListener("progress", progress, false);
+
+                return xhr;
+            },
             method: "POST",
             data: that.formData,
             chunking: true,
@@ -28,6 +35,7 @@ class PhotoSender {
         })
 
     }
+    
 
 }
 

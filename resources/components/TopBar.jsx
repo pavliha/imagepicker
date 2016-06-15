@@ -1,7 +1,4 @@
 import React from "react";
-import AppBar from "material-ui/AppBar";
-import IconButton from "material-ui/IconButton";
-import ActionHome from "material-ui/svg-icons/navigation/arrow-back";
 import ImageButton from "./ImageButton.jsx";
 
 export default class TopBar extends React.Component {
@@ -10,8 +7,8 @@ export default class TopBar extends React.Component {
         title: {
             cursor: 'pointer',
         },
-        iconStyle:{
-            color:"white",
+        iconStyle: {
+            color: "white",
             width: 96,
             height: 96,
             padding: 0,
@@ -22,19 +19,20 @@ export default class TopBar extends React.Component {
         super(props);
         this.state = {}
     }
-    goBackHome(){
+
+    goBackHome() {
         window.location.href = '/';
     }
+
     render() {
         return (
-            <AppBar
-                iconElementLeft={<IconButton onClick={this.goBackHome.bind(this)}><ActionHome /></IconButton>}
-                title={<span style={this.styles.title}>Image filters online</span>}
-                iconElementRight={
+            <div>
+                <button onClick={this.goBackHome.bind(this)}></button>
+                Image filters online
                 <div className="ImageButton--correct-block">
                     <ImageButton>Выбрать фото</ImageButton>
-                </div>}
-            />
+                </div>
+            </div>
         );
     }
 }
