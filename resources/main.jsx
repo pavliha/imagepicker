@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import ReactDOM from "react-dom";
+import {render} from "react-dom";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
@@ -54,4 +54,4 @@ const App = () => (
     </MuiThemeProvider>
 );
 
-ReactDOM.render(<App/>, document.getElementById("app"));
+render(<App/>, document.getElementById("app"));

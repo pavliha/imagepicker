@@ -2,22 +2,15 @@ import PhotoSender from "./PhotoSender";
 
 export default class ImageUploader {
 
-    openUploadBox() {
 
-        let input = document.querySelector("input[type=file]");
-        //input.style = "display:none";
+    constructor(inputFile){
 
-        input.addEventListener("change", function () {
-            console.log("hello")
-        });
-        input.click();
-
-
-
-
+        this.inputFile = inputFile;
     }
 
+
     onProgress(e) {
+
         if (e.lengthComputable) {
             var percentage = Math.round((e.loaded * 100) / e.total);
             ee.emit("upload-progress", percentage)
@@ -26,10 +19,12 @@ export default class ImageUploader {
     }
 
     onResponse(response) {
+
         ee.emit("photos-load", response)
     }
 
     readImage() {
+
         let reader = new window.FileReader();
 
         reader.readAsDataURL(this.inputFile);
@@ -41,9 +36,7 @@ export default class ImageUploader {
         };
     }
 
-    upload(e) {
-
-        this.inputFile = e.target.files[0];
+    upload() {
 
         this.readImage();
 

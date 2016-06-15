@@ -2,6 +2,7 @@
 import React from "react";
 import Range from "./Range.jsx";
 import FlatButton from "material-ui/FlatButton";
+import ArrowButton from "./ArrowButton.jsx";
 
 class EditPanel extends React.Component {
 
@@ -30,6 +31,7 @@ class EditPanel extends React.Component {
 
         return (
             <div className="EditPanel">
+                <ArrowButton/>
                 <Range
                     disabled={this.state.disabled}
                     label="Яркость"

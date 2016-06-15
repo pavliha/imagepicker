@@ -1,12 +1,14 @@
 import React from "react";
-import RaisedButton from "material-ui/RaisedButton";
+import FlatButton from "material-ui/FlatButton";
 import browser from "detect-browser";
 import ImageUploader from "../modules/ImageUploader";
 class ImageButton extends React.Component {
 
     styles = {
         button: {
-            padding: 0,
+            padding: "-4px",
+            color:"#FAFAFA",
+            
         },
         ImageInput: {
             background: "#0072ff",
@@ -20,7 +22,7 @@ class ImageButton extends React.Component {
             opacity: 0,
         },
         FirefoxImageInput: {
-            textAlign:"center"
+            textAlign: "center"
         },
     };
 
@@ -37,34 +39,36 @@ class ImageButton extends React.Component {
                     type="file"
                     style={this.styles.FirefoxImageInput}
                     onChange={this.uploadImage.bind(this)}
+                    disabled={this.props.disabled}
+                    className={this.props.className}
+                    accept="image/x-png, image/gif, image/jpeg" name="image"
                 />
             )
         }
         return (
-            <RaisedButton
+            <FlatButton
                 label={this.props.children}
                 labelPosition="before"
                 style={this.styles.button}
                 disabled={this.props.disabled}
+                className="ImageButton"
                 accept="image/x-png, image/gif, image/jpeg" name="image">
-
                 <input
                     type="file"
                     style={this.styles.ImageInput}
                     onChange={this.uploadImage.bind(this)}
                 />
-            </RaisedButton>
+            </FlatButton>
         );
     }
-    
-    uploadImage(){
-      
-        let imageUploader = new ImageUploader();
-        imageUploader.openUploadBox()
-            .then(imageUploader.upload);
-        
+
+    uploadImage(e) {
+        let inputFile = e.target.files[0];
+        let imageUploader = new ImageUploader(inputFile);
+        imageUploader.upload();
+
     }
-    
+
 }
 
 export default ImageButton;

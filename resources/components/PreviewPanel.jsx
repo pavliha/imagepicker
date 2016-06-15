@@ -3,9 +3,9 @@
  */
 
 import React from "react";
-import ImageButton from "./ImageButton.jsx";
 import ImagePreview from "./ImagePreview.jsx";
-import ButtonsGroup from "./ButtonsGroup.jsx";
+//import ImageButton from "./ImageButton.jsx";
+//import ButtonsGroup from "./ButtonsGroup.jsx";
 
 export default class PreviewPanel extends React.Component {
 
@@ -48,12 +48,13 @@ export default class PreviewPanel extends React.Component {
         return (
             <div className="PreviewPanel">
                 <ImagePreview/>
-                <ButtonsGroup>
-                    <ImageButton>{this.state.button.name}</ImageButton>
-                </ButtonsGroup>
-
             </div>
         );
     }
 
 }
+/*
+* <ButtonsGroup>
+ <ImageButton>{this.state.button.name}</ImageButton>
+ </ButtonsGroup>
+* */
