@@ -23,7 +23,7 @@
 </head>
 <body>
 @yield("body")
-<script src="/preload.js"></script>
+<script src="/js/preload.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 </body>
 </html>

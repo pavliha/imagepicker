@@ -14,8 +14,8 @@ const browserSync = broWserSync.create();
 const $ = gulpLoadPlugins();
 const JS = {
     watch: 'resources/**/*.{jsx,js}',
-    src: 'resources/main.jsx',
-    dest: 'public/',
+    src: 'resources/js/main.jsx',
+    dest: 'public/js',
     browSync: 'public/*.js'
 };
 const STYLES = {
@@ -70,13 +70,15 @@ gulp.task('watch:browserSync', ['browserify', 'styles'], ()=> {
 gulp.task("blade", ()=> {
     gulp.src(BLADE.src)
         .pipe($.livereload())
-        .pipe(browserSync.stream({match: BLADE.src}));
+        .pipe(browserSync.stream({match: BLADE.src}))
+        .pipe($.size({title: 'blade'}));
 });
 
 gulp.task("fonts", ()=> {
     gulp.src(FONTS.src)
         .pipe(gulp.dest(FONTS.dest))
         .pipe($.livereload())
+        .pipe($.size({title: 'fonts'}));
 });
 
 gulp.task('images', () => {
@@ -98,6 +100,7 @@ gulp.task("styles", ()=> {
         ]))
 
         .pipe(gulp.dest(STYLES.dest))
+        .pipe($.size({title: 'styles'}))
         .pipe($.livereload());
 });
 
@@ -111,6 +114,7 @@ gulp.task("styles:minify", ()=> {
         ]))
         .pipe($.cleanCss())
         .pipe(gulp.dest(STYLES.dest))
+        .pipe($.size({title: 'styles:minify'}))
 });
 
 gulp.task("html", ()=> {
@@ -121,9 +125,10 @@ gulp.task("html", ()=> {
         minifyJS:              true
     };
 
-    return gulp.src('./storage/framework/views/*')
+    gulp.src('./storage/framework/views/*')
         .pipe($.htmlmin(opts))
-        .pipe(gulp.dest('./storage/framework/views/'));
+        .pipe(gulp.dest('./storage/framework/views/'))
+        .pipe($.size({title: 'html'}));
 });
 
 gulp.task("webpack", ()=> {
@@ -133,13 +138,16 @@ gulp.task("webpack", ()=> {
 });
 
 gulp.task("sw", ()=> {
-    let sw = gulp.src("resources/sw.js")
+    let sw = gulp.src("resources/js/sw.js")
         .pipe($.babel())
-        .pipe(gulp.dest("public/"));
+        .pipe(gulp.dest("public/"))
+        .pipe($.size({title: 'preload.js'}));
 
-    let preload = gulp.src("resources/preload.js")
+
+    let preload = gulp.src("resources/js/preload.js")
         .pipe($.babel())
-        .pipe(gulp.dest("public/"));
+        .pipe(gulp.dest("public/js"))
+        .pipe($.size({title: 'preload.js'}));
 
     merge(sw, preload);
 

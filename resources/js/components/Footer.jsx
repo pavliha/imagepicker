@@ -21,7 +21,7 @@ class Footer extends React.Component {
         }
         return (
             <footer className="Footer">
-                <div class="Footer-left">
+                <div class="Footer-center">
                     <p>Image filters &copy; 2016</p>
                 </div>
             </footer>

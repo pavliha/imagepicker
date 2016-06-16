@@ -6,3 +6,14 @@
 //         console.error('ServiceWorker registration failed: ', err);
 //     });
 // }
+
+function loadScript(src) {
+    return new window.Promise(function (resolve, reject) {
+        var s;
+        s = document.createElement('script');
+        s.src = "/js/"+src;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+    });
+}

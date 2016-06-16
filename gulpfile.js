@@ -42,8 +42,8 @@ var browserSync = _browserSync2.default.create();
 var $ = (0, _gulpLoadPlugins2.default)();
 var JS = {
     watch: 'resources/**/*.{jsx,js}',
-    src: 'resources/main.jsx',
-    dest: 'public/',
+    src: 'resources/js/main.jsx',
+    dest: 'public/js',
     browSync: 'public/*.js'
 };
 var STYLES = {
@@ -93,11 +93,11 @@ _gulp2.default.task('watch:browserSync', ['browserify', 'styles'], function () {
 });
 
 _gulp2.default.task("blade", function () {
-    _gulp2.default.src(BLADE.src).pipe($.livereload()).pipe(browserSync.stream({ match: BLADE.src }));
+    _gulp2.default.src(BLADE.src).pipe($.livereload()).pipe(browserSync.stream({ match: BLADE.src })).pipe($.size({ title: 'blade' }));
 });
 
 _gulp2.default.task("fonts", function () {
-    _gulp2.default.src(FONTS.src).pipe(_gulp2.default.dest(FONTS.dest)).pipe($.livereload());
+    _gulp2.default.src(FONTS.src).pipe(_gulp2.default.dest(FONTS.dest)).pipe($.livereload()).pipe($.size({ title: 'fonts' }));
 });
 
 _gulp2.default.task('images', function () {
@@ -108,11 +108,11 @@ _gulp2.default.task('images', function () {
 });
 
 _gulp2.default.task("styles", function () {
-    _gulp2.default.src(STYLES.src).pipe($.stylus()).pipe($.postcss([(0, _autoprefixer2.default)({ browsers: ['last 2 versions'] }), (0, _lost2.default)()])).pipe(_gulp2.default.dest(STYLES.dest)).pipe($.livereload());
+    _gulp2.default.src(STYLES.src).pipe($.stylus()).pipe($.postcss([(0, _autoprefixer2.default)({ browsers: ['last 2 versions'] }), (0, _lost2.default)()])).pipe(_gulp2.default.dest(STYLES.dest)).pipe($.size({ title: 'styles' })).pipe($.livereload());
 });
 
 _gulp2.default.task("styles:minify", function () {
-    _gulp2.default.src(STYLES.src).pipe($.stylus()).pipe($.postcss([(0, _autoprefixer2.default)({ browsers: ['last 1 version'] }), (0, _cssnano2.default)(), (0, _lost2.default)()])).pipe($.cleanCss()).pipe(_gulp2.default.dest(STYLES.dest));
+    _gulp2.default.src(STYLES.src).pipe($.stylus()).pipe($.postcss([(0, _autoprefixer2.default)({ browsers: ['last 1 version'] }), (0, _cssnano2.default)(), (0, _lost2.default)()])).pipe($.cleanCss()).pipe(_gulp2.default.dest(STYLES.dest)).pipe($.size({ title: 'styles:minify' }));
 });
 
 _gulp2.default.task("html", function () {
@@ -123,7 +123,7 @@ _gulp2.default.task("html", function () {
         minifyJS: true
     };
 
-    return _gulp2.default.src('./storage/framework/views/*').pipe($.htmlmin(opts)).pipe(_gulp2.default.dest('./storage/framework/views/'));
+    _gulp2.default.src('./storage/framework/views/*').pipe($.htmlmin(opts)).pipe(_gulp2.default.dest('./storage/framework/views/')).pipe($.size({ title: 'html' }));
 });
 
 _gulp2.default.task("webpack", function () {
@@ -131,9 +131,9 @@ _gulp2.default.task("webpack", function () {
 });
 
 _gulp2.default.task("sw", function () {
-    var sw = _gulp2.default.src("resources/sw.js").pipe($.babel()).pipe(_gulp2.default.dest("public/"));
+    var sw = _gulp2.default.src("resources/js/sw.js").pipe($.babel()).pipe(_gulp2.default.dest("public/")).pipe($.size({ title: 'preload.js' }));
 
-    var preload = _gulp2.default.src("resources/preload.js").pipe($.babel()).pipe(_gulp2.default.dest("public/"));
+    var preload = _gulp2.default.src("resources/js/preload.js").pipe($.babel()).pipe(_gulp2.default.dest("public/js")).pipe($.size({ title: 'preload.js' }));
 
     (0, _mergeStream2.default)(sw, preload);
 });

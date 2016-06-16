@@ -4,8 +4,9 @@ var webpack = require('webpack');
 module.exports = {
 
     entry: {
-        main:'./resources/main.jsx',
+        main:'./resources/js/main.jsx',
         react: ["react","react-dom"],
+        fabric: ["fabric"],
     },
 
     progress:true,

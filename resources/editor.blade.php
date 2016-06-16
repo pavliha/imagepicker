@@ -1,8 +1,6 @@
 @extends("main")
 @section("head")
     <link rel="stylesheet" href="/styles/main.css"/>
-    {{--lib that adds support for ajax progress--}}
-    {{--<script async src="/bower_components/jq-ajax-progress/src/jq-ajax-progress.min.js"></script>--}}
     {{--TODO get rid of camanjs--}}
     <script async src="/bower_components/caman/dist/caman.min.js"></script>
 @endsection
@@ -15,6 +13,6 @@
             crossorigin="anonymous">
     </script>
 
-    <script src="/react.js"></script>
-    <script async src="/main.js"></script>
+    <script src="/js/react.js"></script>
+    <script async src="/js/main.js"></script>
 @endsection

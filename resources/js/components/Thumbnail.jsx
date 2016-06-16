@@ -16,12 +16,7 @@ class Thumbnail extends React.Component {
             </div>
         )
     }
-
-    downloadFile(requestURL, data) {
-        // "transData" is just a user defined variable to encapsulate "downloadIFrame". It can be named anything as required.
-        var downloadIFrame = window.transData.downloadIFrame = window.transData.downloadIFrame || $("#downloadFileiFrame");
-        downloadIFrame.attr("src", requestURL + $.param(requestData));
-    }
+    
 
     handleClick() {
         var filter = this.props.label;
