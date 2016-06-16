@@ -163,8 +163,6 @@ table {
 }
 .Thumbnails {
   background: #f3f2f4;
-  margin: 10px;
-  margin-top: 40px;
   -ms-flex-pack: center;
       justify-content: center;
   display: -ms-flexbox;
@@ -206,29 +204,6 @@ table {
     max-width: 450px;
   }
 }
-.PreviewPanel,
-.PreviewPanel--larger {
-  border: 2px solid rgba(0,0,0,0.1);
-  border-radius: 3px;
-  box-shadow: rgba(0,0,0,0.118) 0 1px 6px, rgba(0,0,0,0.118) 0px 1px 4px;
-  margin: 0 20px;
-  margin-top: 40px;
-  width: 50%;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-}
-.PreviewPanel--larger {
-  width: 60%;
-}
-@media (max-width: 600px) {
-  .PreviewPanel {
-    margin: 0 6px;
-    margin-top: 40px;
-    width: 100%;
-  }
-}
 .ArrowButton button {
   background-color: transparent;
   border-radius: 30px;
@@ -252,94 +227,6 @@ table {
   padding: 10px;
   -ms-flex-preferred-size: 5%;
       flex-basis: 5%;
-}
-.Range input[type=range] {
-  -webkit-appearance: none;
-  margin: 10px 0;
-  width: 100%;
-}
-.Range input[type=range]:focus {
-  outline: none;
-}
-.Range input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 12.8px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #000, 0px 0px 0px #0d0d0d;
-  background: #ac51b5;
-  border-radius: 25px;
-  border: 0px solid #000101;
-}
-.Range input[type=range]::-webkit-slider-thumb {
-  box-shadow: 0px 0px 0px #000, 0px 0px 0px #0d0d0d;
-  border: 0px solid #000;
-  height: 20px;
-  width: 39px;
-  border-radius: 7px;
-  background: #65001c;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -3.6px;
-}
-.Range input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #ac51b5;
-}
-.Range input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 12.8px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 0px 0px 0px #000, 0px 0px 0px #0d0d0d;
-  background: #ac51b5;
-  border-radius: 25px;
-  border: 0px solid #000101;
-}
-.Range input[type=range]::-moz-range-thumb {
-  box-shadow: 0px 0px 0px #000, 0px 0px 0px #0d0d0d;
-  border: 0px solid #000;
-  height: 20px;
-  width: 39px;
-  border-radius: 7px;
-  background: #65001c;
-  cursor: pointer;
-}
-.Range input[type=range]::-ms-track {
-  width: 100%;
-  height: 12.8px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  border-width: 39px 0;
-  color: transparent;
-}
-.Range input[type=range]::-ms-fill-lower {
-  background: #ac51b5;
-  border: 0px solid #000101;
-  border-radius: 50px;
-  box-shadow: 0px 0px 0px #000, 0px 0px 0px #0d0d0d;
-}
-.Range input[type=range]::-ms-fill-upper {
-  background: #ac51b5;
-  border: 0px solid #000101;
-  border-radius: 50px;
-  box-shadow: 0px 0px 0px #000, 0px 0px 0px #0d0d0d;
-}
-.Range input[type=range]::-ms-thumb {
-  box-shadow: 0px 0px 0px #000, 0px 0px 0px #0d0d0d;
-  border: 0px solid #000;
-  height: 20px;
-  width: 39px;
-  border-radius: 7px;
-  background: #65001c;
-  cursor: pointer;
-}
-.Range input[type=range]:focus::-ms-fill-lower {
-  background: #ac51b5;
-}
-.Range input[type=range]:focus::-ms-fill-upper {
-  background: #ac51b5;
 }
 .label,
 .label--disabled {
@@ -397,16 +284,24 @@ table {
   font-size: 11pt;
 }
 .ImagePreview {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  border-radius: 2px;
+  margin: 0 20px;
+  margin-top: 40px;
+  width: 70%;
+  height: 600px;
+  background-color: #f4f4f4;
 }
-.ImagePreview .img {
-  height: 400px;
-  text-align: center;
-  width: 100%;
+.waves-effect.waves-white .waves-ripple {
+/* The alpha value allows the text and background color
+  of the button to still show through. */
+  background-color: rgba(10,10,10,0.65);
+}
+.btn-circle {
+  margin: 5px;
+  padding: 1px;
+}
+.btn-circle i {
+  color: #fff;
+  font-size: 35px;
 }
 .ButtonsBlock {
   height: 40vh;
@@ -428,15 +323,26 @@ table {
   padding-top: 0;
 }
 .ImageButton--correct-block {
-  color: #fff;
-  margin-top: 6px;
-  box-sizing: border-box;
-  border: solid 1px #fff;
-  border-radius: 2px;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  display: -ms-flexbox;
+  display: flex;
+  padding-right: 10px;
 }
-.ImageButton--correct-block:hover {
-  color: #282828;
-  background-color: rgba(255,255,255,0.55);
+.ImageButton--correct-block .btn:hover {
+  box-shadow: none;
+}
+.ImageButton--correct-block .btn-flat {
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  border-radius: 3px;
+}
+.ImageButton--correct-block .btn-flat:hover {
+  box-shadow: none;
+  background-color: rgba(0,0,0,0.16);
 }
 .Footer {
   background-color: #292c2f;
@@ -495,6 +401,39 @@ table {
   .Footer .Footer-left p.Footer-links {
     line-height: 1.8;
   }
+}
+.TopBar {
+  background-color: #00bcd4;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  height: 65px;
+  color: #fff;
+  box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.14), 0px 0px 2px 2px rgba(0,0,0,0.098), 0px 0px 5px 1px rgba(0,0,0,0.084);
+}
+.TopBar h5 {
+  padding-left: 30px;
+  -ms-flex-preferred-size: 60%;
+      flex-basis: 60%;
+}
+.TopBar i {
+  font-size: 60px;
+  color: #f0f0f0;
+  width: 30px;
+}
+.btn--white {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  background-color: #fff !important;
+}
+.btn--white:hover {
+  background-color: #fff;
+  font-weight: 500;
+}
+.btn--white:aktive {
+  background-color: #fff;
+  font-weight: 500;
 }
 .banner {
   height: 300px;

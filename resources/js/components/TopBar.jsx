@@ -27,8 +27,8 @@ export default class TopBar extends React.Component {
     render() {
         return (
             <div className="TopBar">
-                <button onClick={this.goBackHome.bind(this)}></button>
-                Image filters online
+                <i className="material-icons">portrait</i>
+                <h5>IMAGE FILTERS</h5>
                 <div className="ImageButton--correct-block">
                     <ImageButton>Выбрать фото</ImageButton>
                 </div>

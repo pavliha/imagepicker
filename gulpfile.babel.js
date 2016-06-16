@@ -141,13 +141,13 @@ gulp.task("sw", ()=> {
     let sw = gulp.src("resources/js/sw.js")
         .pipe($.babel())
         .pipe(gulp.dest("public/"))
-        .pipe($.size({title: 'preload.js'}));
+        .pipe($.size({title: 'init.js'}));
 
 
-    let preload = gulp.src("resources/js/preload.js")
+    let preload = gulp.src("resources/js/init.js")
         .pipe($.babel())
         .pipe(gulp.dest("public/js"))
-        .pipe($.size({title: 'preload.js'}));
+        .pipe($.size({title: 'init.js'}));
 
     merge(sw, preload);
 

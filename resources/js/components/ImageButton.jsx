@@ -12,14 +12,18 @@ class ImageButton extends React.Component {
     render() {
 
         return (
-                <input
-                    disabled={this.props.disabled}
-                    className="ImageButton"
-                    accept="image/x-png, image/gif, image/jpeg" name="image"
-                    type="file"
-                    onChange={this.uploadImage.bind(this)}
+            <div className="file-field ImageButton">
+                <div className="btn btn-flat">
+                    <span>Выбрать фото</span>
+                    <input
+                        disabled={this.props.disabled}
+                        accept="image/x-png, image/gif, image/jpeg" name="image"
+                        type="file"
+                        onChange={this.uploadImage.bind(this)}
+                    />
+                </div>
+            </div>
 
-                />
         );
     }
 

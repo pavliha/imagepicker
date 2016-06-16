@@ -6,8 +6,7 @@ import React from "react";
 import {render} from "react-dom";
 import TopBar from "./components/TopBar.jsx";
 import UploadProgress from "./components/UploadProgress.jsx";
-import PreviewPanel from "./components/PreviewPanel.jsx";
-import EditPanel from "./components/EditPanel.jsx";
+import ImagePreview from "./components/ImagePreview.jsx";
 import Thumbnails from "./components/Thumbnails.jsx";
 import Footer from "./components/Footer.jsx";
 import emitter from "event-emitter";
@@ -30,10 +29,9 @@ class Main extends React.Component {
                 <TopBar/>
                 <UploadProgress/>
                 <section className="flexbox-container editor-background">
-                    <PreviewPanel/>
-                    <EditPanel/>
+                    <ImagePreview/>
                 </section>
-
+               
                 <Thumbnails/>
                 <Footer/>
             </div>
@@ -44,5 +42,6 @@ class Main extends React.Component {
 
 }
 
+$('.materialboxed').materialbox();
 
 render(<Main />, document.getElementById("app"));

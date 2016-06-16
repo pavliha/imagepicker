@@ -18,12 +18,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
   <link rel="stylesheet" href="/styles/main.css"/>
+
   <title>Image Filters Online - быстрая обработка фото бесплатно</title>
   @yield("head")
 </head>
 <body>
 @yield("body")
-<script src="/js/preload.js"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js" crossorigin="anonymous"></script>
+<script src="/js/init.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 </body>
 </html>

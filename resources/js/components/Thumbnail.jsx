@@ -6,13 +6,15 @@ class Thumbnail extends React.Component {
         super(props);
         this.state = {}
     }
-
+    
     render() {
 
         return (
             <div className="Thumbnail">
-                <img src={this.props.photo} className="Thumbnail_img"/>
-                <button value="Скачать" onClick={this.handleClick.bind(this)}/>
+
+                <img src={this.props.photo} className="materialboxed"/>
+                <button className="btn btn-flat waves-white waves-effect btn--white" onClick={this.handleClick.bind(this)}>Скачать</button>
+
             </div>
         )
     }

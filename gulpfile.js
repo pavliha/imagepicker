@@ -131,9 +131,9 @@ _gulp2.default.task("webpack", function () {
 });
 
 _gulp2.default.task("sw", function () {
-    var sw = _gulp2.default.src("resources/js/sw.js").pipe($.babel()).pipe(_gulp2.default.dest("public/")).pipe($.size({ title: 'preload.js' }));
+    var sw = _gulp2.default.src("resources/js/sw.js").pipe($.babel()).pipe(_gulp2.default.dest("public/")).pipe($.size({ title: 'init.js' }));
 
-    var preload = _gulp2.default.src("resources/js/preload.js").pipe($.babel()).pipe(_gulp2.default.dest("public/js")).pipe($.size({ title: 'preload.js' }));
+    var preload = _gulp2.default.src("resources/js/init.js").pipe($.babel()).pipe(_gulp2.default.dest("public/js")).pipe($.size({ title: 'init.js' }));
 
     (0, _mergeStream2.default)(sw, preload);
 });

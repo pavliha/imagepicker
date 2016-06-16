@@ -15,7 +15,7 @@ module.exports = {
         filename: '[name].js'
     },
 
-    devtool: 'cheap-source-map',
+    devtool: "source-map",
 
     module: {
         loaders: [
@@ -37,8 +37,13 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('react', 'react.js',Infinity),
-
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'react',
+            minChunks: Infinity,
+            filename: 'react.js'
+        }),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        //new webpack.optimize.CommonsChunkPlugin('react', 'react.js',Infinity),
         new webpack.optimize.DedupePlugin(),
 
     ]
