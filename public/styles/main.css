@@ -161,83 +161,28 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-.Thumbnails {
-  background: #f3f2f4;
-  -ms-flex-pack: center;
-      justify-content: center;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-@media (max-width: 600px) {
-  .Thumbnails {
-    background: #f3f2f4;
-    margin: 5px;
-    margin-top: 40px;
-    -ms-flex-pack: center;
-        justify-content: center;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-}
-.Thumbnail {
-  margin: 5px;
-  overflow: hidden;
-  border-radius: 2px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-  border: 3px;
-  width: 300px;
-}
-.Thumbnail .Thumbnail_img {
-  cursor: pointer;
-  max-width: 300px;
-}
-@media (max-width: 600px) {
-  .Thumbnail {
-    width: 450px;
-  }
-  .Thumbnail .Thumbnail_img {
-    cursor: pointer;
-    max-width: 450px;
-  }
-}
 .ArrowButton button {
   background-color: transparent;
   border-radius: 30px;
 }
-.Range {
-  margin: 20px;
-  padding: 10px;
-  border: 1px rgba(0,0,0,0.1) solid;
-  background: rgba(0,0,0,0.02);
+.ButtonsBlock {
+  height: 40vh;
   -ms-flex-pack: center;
       justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -ms-flex-align: center;
-      align-items: center;
+  margin-left: 60px;
+  margin-right: 60px;
   display: -ms-flexbox;
   display: flex;
-  height: 30px;
+  -ms-flex-direction: column;
+      flex-direction: column;
 }
-.Range .icon {
-  padding: 10px;
-  -ms-flex-preferred-size: 5%;
-      flex-basis: 5%;
-}
-.label,
-.label--disabled {
-  color: #000;
-  -ms-flex-preferred-size: 30%;
-      flex-basis: 30%;
-  text-align: left;
-}
-.label--disabled,
-.label--disabled--disabled {
-  color: #808080;
+.ButtonsBlock--down {
+  margin-left: 0;
+  margin-right: 0;
+  height: 40px;
+  -ms-flex-pack: center;
+      justify-content: center;
+  padding-top: 0;
 }
 .EditPanel,
 .EditPanel--larger,
@@ -263,86 +208,6 @@ table {
   .EditPanel {
     display: none;
   }
-}
-.StatusBar {
-  width: 100%;
-  margin-top: auto;
-  color: #000;
-  font-family: Roboto, sans-serif;
-  font-kerning: 10ch;
-  padding: 5px;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex: 1;
-      flex: 1;
-  -ms-flex-align: end;
-      align-items: flex-end;
-  -ms-flex-pack: center;
-      justify-content: center;
-  text-align: center;
-  line-height: 20px;
-  font-size: 11pt;
-}
-.ImagePreview {
-  margin: 0 20px;
-  margin-top: 40px;
-  width: 70%;
-  height: 600px;
-  background-color: #f4f4f4;
-}
-.waves-effect.waves-white .waves-ripple {
-/* The alpha value allows the text and background color
-  of the button to still show through. */
-  background-color: rgba(10,10,10,0.65);
-}
-.btn-circle {
-  margin: 5px;
-  padding: 1px;
-}
-.btn-circle i {
-  color: #fff;
-  font-size: 35px;
-}
-.ButtonsBlock {
-  height: 40vh;
-  -ms-flex-pack: center;
-      justify-content: center;
-  margin-left: 60px;
-  margin-right: 60px;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-}
-.ButtonsBlock--down {
-  margin-left: 0;
-  margin-right: 0;
-  height: 40px;
-  -ms-flex-pack: center;
-      justify-content: center;
-  padding-top: 0;
-}
-.ImageButton--correct-block {
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
-  -ms-flex-pack: end;
-      justify-content: flex-end;
-  display: -ms-flexbox;
-  display: flex;
-  padding-right: 10px;
-}
-.ImageButton--correct-block .btn:hover {
-  box-shadow: none;
-}
-.ImageButton--correct-block .btn-flat {
-  color: #fff;
-  font-family: Roboto, sans-serif;
-  font-weight: 500;
-  border-radius: 3px;
-}
-.ImageButton--correct-block .btn-flat:hover {
-  box-shadow: none;
-  background-color: rgba(0,0,0,0.16);
 }
 .Footer {
   background-color: #292c2f;
@@ -402,6 +267,136 @@ table {
     line-height: 1.8;
   }
 }
+.btn-circle {
+  margin: 5px;
+  padding: 1px;
+}
+.btn-circle i {
+  color: #fff;
+  font-size: 35px;
+}
+.ImageButton--correct-block {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  display: -ms-flexbox;
+  display: flex;
+  padding-right: 10px;
+}
+.ImageButton--correct-block .btn:hover {
+  box-shadow: none;
+}
+.ImageButton--correct-block .btn-flat {
+  color: #fff;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  border-radius: 3px;
+}
+.ImageButton--correct-block .btn-flat:hover {
+  box-shadow: none;
+  background-color: rgba(0,0,0,0.16);
+}
+.ImagePreview {
+  margin: 0 20px;
+  margin-top: 40px;
+  width: 70%;
+  height: 600px;
+  background-color: #f4f4f4;
+}
+.Range {
+  margin: 20px;
+  padding: 10px;
+  border: 1px rgba(0,0,0,0.1) solid;
+  background: rgba(0,0,0,0.02);
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30px;
+}
+.Range .icon {
+  padding: 10px;
+  -ms-flex-preferred-size: 5%;
+      flex-basis: 5%;
+}
+.label,
+.label--disabled {
+  color: #000;
+  -ms-flex-preferred-size: 30%;
+      flex-basis: 30%;
+  text-align: left;
+}
+.label--disabled,
+.label--disabled--disabled {
+  color: #808080;
+}
+.StatusBar {
+  width: 100%;
+  margin-top: auto;
+  color: #000;
+  font-family: Roboto, sans-serif;
+  font-kerning: 10ch;
+  padding: 5px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex: 1;
+      flex: 1;
+  -ms-flex-align: end;
+      align-items: flex-end;
+  -ms-flex-pack: center;
+      justify-content: center;
+  text-align: center;
+  line-height: 20px;
+  font-size: 11pt;
+}
+.Thumbnail {
+  margin: 5px;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  border: 3px;
+  width: 300px;
+}
+.Thumbnail .Thumbnail_img {
+  cursor: pointer;
+  max-width: 300px;
+}
+@media (max-width: 600px) {
+  .Thumbnail {
+    width: 450px;
+  }
+  .Thumbnail .Thumbnail_img {
+    cursor: pointer;
+    max-width: 450px;
+  }
+}
+.Thumbnails {
+  background: #f3f2f4;
+  -ms-flex-pack: center;
+      justify-content: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+  .Thumbnails {
+    background: #f3f2f4;
+    margin: 5px;
+    margin-top: 40px;
+    -ms-flex-pack: center;
+        justify-content: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
 .TopBar {
   background-color: #00bcd4;
   display: -ms-flexbox;
@@ -431,7 +426,7 @@ table {
   background-color: #fff;
   font-weight: 500;
 }
-.btn--white:aktive {
+.btn--white:active {
   background-color: #fff;
   font-weight: 500;
 }

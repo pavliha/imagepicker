@@ -1,6 +1,6 @@
 import React from "react";
 
-class Thumbnail extends React.Component {
+export default class Thumbnail extends React.Component {
 
     constructor(props) {
         super(props);
@@ -8,11 +8,10 @@ class Thumbnail extends React.Component {
     }
     
     render() {
-
         return (
             <div className="Thumbnail">
 
-                <img src={this.props.photo} className="materialboxed"/>
+                <img src={this.props.photo} className="materialboxed Thumbnail_img"/>
                 <button className="btn btn-flat waves-white waves-effect btn--white" onClick={this.handleClick.bind(this)}>Скачать</button>
 
             </div>
@@ -35,5 +34,3 @@ class Thumbnail extends React.Component {
             })
     }
 }
-
-export default Thumbnail;

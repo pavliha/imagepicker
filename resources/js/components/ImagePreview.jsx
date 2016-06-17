@@ -19,7 +19,7 @@ export default class ImagePreview extends React.Component {
         if (this.state.previewImage) {
 
             return (
-                <div className="ImagePreview" ref="imagePreview" >
+                <div className="ImagePreview" ref="imagePreview">
                     <canvas className="canvas" id="EditImage"></canvas>
                 </div>
             )
@@ -29,42 +29,44 @@ export default class ImagePreview extends React.Component {
     }
 
     loadFabric(previewImage) {
+
         this.setState({
             previewImage: previewImage,
             display: true,
         });
+
         loadScript("fabric.js").then(this.initFabric.bind(this));
     }
 
     initFabric() {
-        var imagePreview = document.querySelector(".ImagePreview");
-        console.log(imagePreview);
+        let imagePreview = document.querySelector(".ImagePreview");
         //let imagePreview = React.findDOMNode(this);
         let img = new Image();
         img.src = this.state.previewImage;
-        let canvas = new fabric.Canvas('EditImage');
-        canvas.setWidth(imagePreview.offsetWidth-3);
+        let canvas = new window.fabric.Canvas('EditImage');
+        canvas.setWidth(imagePreview.offsetWidth - 3); //Gotta find better solution
         canvas.setHeight(imagePreview.offsetHeight);
-        img.onload = this.addImage(img, canvas,imagePreview)
+        img.onload = this.addImage(img, canvas, imagePreview)
     }
 
-    addImage(img, canvas,imagePreview) {
+    addImage(img, canvas, imagePreview) {
 
-        let ih = img.naturalHeight;
-        let iw = img.naturalWidth;
+        let imgHeight = img.naturalHeight;
+        let imgWidth = img.naturalWidth;
 
-        let width_ratio  = imagePreview.offsetWidth  / iw;
-        let height_ratio = imagePreview.offsetHeight / ih;
-        let fw,fh;
+        let width_ratio = imagePreview.offsetWidth / imgWidth;
+        let height_ratio = imagePreview.offsetHeight / imgHeight;
+
+        let fw, fh;
         if (width_ratio < height_ratio) {
-             fw = iw * width_ratio;
-             fh = ih*fw/iw;
+            fw = imgWidth * width_ratio;
+            fh = imgHeight * fw / imgWidth;
         } else {
-             fh = ih * height_ratio;
-             fw = iw*fh/ih;
+            fh = imgHeight * height_ratio;
+            fw = imgWidth * fh / imgHeight;
         }
 
-        let imgInstance = new fabric.Image(img, {
+        let imgInstance = new window.fabric.Image(img, {
             width: canvas.width,
             left: 0,
             top: 0,
@@ -72,8 +74,8 @@ export default class ImagePreview extends React.Component {
             opacity: 1,
         });
         imgInstance.set({
-            width:fw,
-            height:fh
+            width: fw,
+            height: fh
         });
         console.log(imgInstance);
         canvas.add(imgInstance);
