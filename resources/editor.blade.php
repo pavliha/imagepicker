@@ -9,6 +9,10 @@
     <section id="app">{{--react entry point--}}</section>
 
 
+
+@endsection
+
+@section("js")
     <script src="/js/react.js"></script>
     <script async src="/js/main.js"></script>
 @endsection

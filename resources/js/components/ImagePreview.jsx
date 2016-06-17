@@ -46,39 +46,40 @@ export default class ImagePreview extends React.Component {
         let canvas = new window.fabric.Canvas('EditImage');
         canvas.setWidth(imagePreview.offsetWidth - 3); //Gotta find better solution
         canvas.setHeight(imagePreview.offsetHeight);
-        img.onload = this.addImage(img, canvas, imagePreview)
+        img.onload = this.addImage(img,imagePreview)
+            .then((fabricImage)=> canvas.add(fabricImage))
     }
 
-    addImage(img, canvas, imagePreview) {
+    addImage(img, imagePreview) {
 
-        let imgHeight = img.naturalHeight;
-        let imgWidth = img.naturalWidth;
+        return new Promise((resolve)=>{
+            let imgHeight = img.naturalHeight;
+            let imgWidth = img.naturalWidth;
 
-        let width_ratio = imagePreview.offsetWidth / imgWidth;
-        let height_ratio = imagePreview.offsetHeight / imgHeight;
+            let width_ratio = imagePreview.offsetWidth / imgWidth;
+            let height_ratio = imagePreview.offsetHeight / imgHeight;
 
-        let fw, fh;
-        if (width_ratio < height_ratio) {
-            fw = imgWidth * width_ratio;
-            fh = imgHeight * fw / imgWidth;
-        } else {
-            fh = imgHeight * height_ratio;
-            fw = imgWidth * fh / imgHeight;
-        }
+            let fw, fh;
+            if (width_ratio < height_ratio) {
+                fw = imgWidth * width_ratio;
+                fh = imgHeight * fw / imgWidth;
+            } else {
+                fh = imgHeight * height_ratio;
+                fw = imgWidth * fh / imgHeight;
+            }
 
-        let imgInstance = new window.fabric.Image(img, {
-            width: canvas.width,
-            left: 0,
-            top: 0,
-            angle: 0,
-            opacity: 1,
+            let imgInstance = new window.fabric.Image(img, {
+                width: fw,
+                height: fh,
+                left: 0,
+                top: 0,
+                angle: 0,
+                opacity: 1,
+            });
+            resolve(imgInstance)
         });
-        imgInstance.set({
-            width: fw,
-            height: fh
-        });
-        console.log(imgInstance);
-        canvas.add(imgInstance);
+
+
 
     }
 }

@@ -25,7 +25,8 @@
 <body>
 @yield("body")
 <script src="https://code.jquery.com/jquery-3.0.0.min.js" crossorigin="anonymous"></script>
-<script src="/js/init.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script src="/js/init.js"></script>
+@yield("js")
 </body>
 </html>
