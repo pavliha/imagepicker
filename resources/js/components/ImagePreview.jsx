@@ -6,6 +6,7 @@ export default class ImagePreview extends React.Component {
         super(props);
         this.state = {
             display: false,
+            imageUrl: null,
         }
     }
 
@@ -16,7 +17,7 @@ export default class ImagePreview extends React.Component {
 
     render() {
 
-        if (this.state.previewImage) {
+        if (this.state.imageUrl) {
 
             return (
                 <div className="ImagePreview" ref="imagePreview">
@@ -28,58 +29,86 @@ export default class ImagePreview extends React.Component {
 
     }
 
-    loadFabric(previewImage) {
+    loadFabric(imageUrl) {
 
         this.setState({
-            previewImage: previewImage,
+            imageUrl: imageUrl,
             display: true,
         });
 
-        loadScript("fabric.js").then(this.initFabric.bind(this));
+        loadScript("fabric.js")
+            .then(this.initCanvas.bind(this))
+            .then(this.setCanvasSize.bind(this))
+            .then(this.addImage.bind(this));
     }
 
-    initFabric() {
-        let imagePreview = document.querySelector(".ImagePreview");
-        //let imagePreview = React.findDOMNode(this);
+    initCanvas() {
+
+        let canvas;
+
+        if (typeof this.state.canvas !== "object") {
+            canvas = new window.fabric.Canvas('EditImage');
+            let imageDOM = document.querySelector(".ImagePreview");
+            this.setState({canvas, imageDOM});
+        }
+
+        return null;
+
+    }
+
+    setCanvasSize() {
+        let canvas = this.state.canvas;
+        canvas.setWidth(this.state.imageDOM.offsetWidth - 3); //Gotta find better solution
+        canvas.setHeight(this.state.imageDOM.offsetHeight);
+
+        return null;
+
+    }
+
+    addImage() {
+
         let img = new Image();
-        img.src = this.state.previewImage;
-        let canvas = new window.fabric.Canvas('EditImage');
-        canvas.setWidth(imagePreview.offsetWidth - 3); //Gotta find better solution
-        canvas.setHeight(imagePreview.offsetHeight);
-        img.onload = this.addImage(img,imagePreview)
-            .then((fabricImage)=> canvas.add(fabricImage))
-    }
+        
+        img.src = this.state.imageUrl;
+        
+        img.onload = () => {
 
-    addImage(img, imagePreview) {
 
-        return new Promise((resolve)=>{
-            let imgHeight = img.naturalHeight;
-            let imgWidth = img.naturalWidth;
+            let [width,height] = this.fitImageOnCanvas(img);
 
-            let width_ratio = imagePreview.offsetWidth / imgWidth;
-            let height_ratio = imagePreview.offsetHeight / imgHeight;
-
-            let fw, fh;
-            if (width_ratio < height_ratio) {
-                fw = imgWidth * width_ratio;
-                fh = imgHeight * fw / imgWidth;
-            } else {
-                fh = imgHeight * height_ratio;
-                fw = imgWidth * fh / imgHeight;
-            }
-
-            let imgInstance = new window.fabric.Image(img, {
-                width: fw,
-                height: fh,
+            var imgInstance = new fabric.Image(img, {
+                width: width,
+                height: height,
                 left: 0,
                 top: 0,
                 angle: 0,
                 opacity: 1,
             });
-            resolve(imgInstance)
-        });
+
+            this.state.canvas.add(imgInstance);
+
+        };
 
 
+    }
 
+    fitImageOnCanvas(img){
+
+        let imgHeight = img.naturalHeight;
+        let imgWidth = img.naturalWidth;
+
+        let width_ratio = this.state.imageDOM.offsetWidth / imgWidth;
+        let height_ratio = this.state.imageDOM.offsetHeight / imgHeight;
+
+        let fw, fh;
+        if (width_ratio < height_ratio) {
+            fw = imgWidth * width_ratio;
+            fh = imgHeight * fw / imgWidth;
+        } else {
+            fh = imgHeight * height_ratio;
+            fw = imgWidth * fh / imgHeight;
+        }
+
+        return [fw,fh];
     }
 }

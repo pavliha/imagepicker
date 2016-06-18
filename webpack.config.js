@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var LiveReloadPlugin = require('webpack-livereload-plugin');
 
 module.exports = {
 
@@ -15,7 +16,7 @@ module.exports = {
         filename: '[name].js'
     },
 
-    devtool: "source-map",
+    devtool: 'source-map',
 
     module: {
         loaders: [
@@ -45,6 +46,7 @@ module.exports = {
         new webpack.optimize.OccurrenceOrderPlugin(),
         //new webpack.optimize.CommonsChunkPlugin('react', 'react.js',Infinity),
         new webpack.optimize.DedupePlugin(),
+        new LiveReloadPlugin({port:4014})
 
     ]
 };

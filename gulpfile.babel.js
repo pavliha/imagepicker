@@ -38,7 +38,10 @@ const FONTS = {
 
 gulp.task('watch', ['webpack', 'styles',"sw"], ()=> {
 
-    $.livereload.listen();
+    $.livereload.listen({
+        port: 35729,
+        quiet: true,
+    });
 
     gulp.watch(JS.watch, ['webpack']);
     gulp.watch("resources/sw.js", ['sw']);
@@ -52,7 +55,9 @@ gulp.task('watch', ['webpack', 'styles',"sw"], ()=> {
 
 gulp.task('watch:browserSync', ['browserify', 'styles'], ()=> {
 
-    $.livereload.listen();
+    $.livereload.listen({
+        quiet:true
+    });
 
     browserSync.init({
         proxy: "cherry.dev"

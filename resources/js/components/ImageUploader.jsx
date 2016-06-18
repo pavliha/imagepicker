@@ -39,14 +39,14 @@ class ImageUploader extends React.Component {
     render() {
         return (
             <div className="ImageUploader">
-                <ImagePreview previewImage={this.state.previewImage}/>
-                <ButtonsBlock expanded={!this.state.previewImage}>
+                <ImagePreview previewImage={this.state.imageUrl}/>
+                <ButtonsBlock expanded={!this.state.imageUrl}>
                     <ImageButton
                         disabled={!this.state.buttonActive}
                         onChange={this.handleInputFileChange.bind(this)}>
                         {this.state.buttonName}
                     </ImageButton>
-                    <div className={this.state.previewImage ? "": "hidden"}>
+                    <div className={this.state.imageUrl ? "": "hidden"}>
                         <LinearProgress mode="determinate" value={this.state.percent}/>
                     </div>
                 </ButtonsBlock>

@@ -17,3 +17,7 @@ function loadScript(src) {
         document.head.appendChild(s);
     });
 }
+
+function dd(...val){
+    console.log(...val)
+}

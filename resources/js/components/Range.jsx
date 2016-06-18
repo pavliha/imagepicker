@@ -16,7 +16,6 @@ class Range extends React.Component {
         return (
             <div className="Range">
                 <div className={this.labelColor(this.props.disabled)}>{this.props.label}</div>
-                <p class="range-field">
                     <input type="range"
                            disabled={this.props.disabled}
                            min="-50"
@@ -25,8 +24,6 @@ class Range extends React.Component {
                            value={this.props.value}
                            onChange={this.props.onChange}
                     />
-                </p>
-
                 <div>
                 </div>
             </div>

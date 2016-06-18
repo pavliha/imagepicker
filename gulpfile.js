@@ -65,7 +65,9 @@ var FONTS = {
 
 _gulp2.default.task('watch', ['webpack', 'styles', "sw"], function () {
 
-    $.livereload.listen();
+    $.livereload.listen({
+        quiet: true
+    });
 
     _gulp2.default.watch(JS.watch, ['webpack']);
     _gulp2.default.watch("resources/sw.js", ['sw']);
@@ -78,7 +80,9 @@ _gulp2.default.task('watch', ['webpack', 'styles', "sw"], function () {
 
 _gulp2.default.task('watch:browserSync', ['browserify', 'styles'], function () {
 
-    $.livereload.listen();
+    $.livereload.listen({
+        quiet: true
+    });
 
     browserSync.init({
         proxy: "cherry.dev"

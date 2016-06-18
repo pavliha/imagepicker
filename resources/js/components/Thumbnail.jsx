@@ -12,7 +12,9 @@ export default class Thumbnail extends React.Component {
             <div className="Thumbnail">
 
                 <img src={this.props.photo} className="materialboxed Thumbnail_img"/>
-                <button className="btn btn-flat waves-white waves-effect btn--white" onClick={this.handleClick.bind(this)}>Скачать</button>
+                
+                <button className="btn btn-flat waves-white waves-effect btn--white"
+                        onClick={this.handleClick.bind(this)}>Редактировать</button>
 
             </div>
         )
