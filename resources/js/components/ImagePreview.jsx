@@ -8,7 +8,6 @@ export default class ImagePreview extends React.Component {
             display: false,
             imageUrl: null,
             imageDOM:null,
-            canvas: null,
         }
     }
 

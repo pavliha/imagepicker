@@ -80,7 +80,11 @@ class EditPanel extends React.Component {
 
     handleBrightness(e, value) {
         this.setState({brightness: value});
-        this.applyFilter(this.state);
+
+        this.state.imgInstance.filters.push(
+            new fabric.Image.filters.Brightness({ brightness: value }));
+        this.state.imgInstance.applyFilters(this.state.canvas.renderAll.bind(this.state.canvas));
+        this.state.canvas.add(this.state.imgInstance);
     }
 
     handleSaturation(e, value) {
@@ -105,12 +109,7 @@ class EditPanel extends React.Component {
 
     applyFilter(v) {
 
-        this.state.imgInstance.filters.push(
-            new fabric.Image.filters.Sepia(),
-            new fabric.Image.filters.Brightness({ brightness: 100 }));
-
-        this.state.imgInstance.applyFilters(canvas.renderAll.bind(canvas));
-        this.state.canvas.add(img);
+        //Nothing
 
     }
 
