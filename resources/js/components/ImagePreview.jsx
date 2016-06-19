@@ -7,11 +7,25 @@ export default class ImagePreview extends React.Component {
         this.state = {
             display: false,
             imageUrl: null,
+            imageDOM:null,
+            canvas: null,
         }
     }
 
     componentWillMount() {
-        ee.on('preview-image', this.loadFabric.bind(this));
+
+        ee.on('preview-image', (imageUrl)=>{
+            this.setState({
+                imageUrl: imageUrl,
+                display: true,
+            });
+
+            loadScript("fabric.js")
+                .then(this.initCanvas.bind(this))
+                .then(this.setCanvasSize.bind(this))
+                .then(this.addImage.bind(this));
+
+        });
     }
 
 
@@ -29,27 +43,19 @@ export default class ImagePreview extends React.Component {
 
     }
 
-    loadFabric(imageUrl) {
-
-        this.setState({
-            imageUrl: imageUrl,
-            display: true,
-        });
-
-        loadScript("fabric.js")
-            .then(this.initCanvas.bind(this))
-            .then(this.setCanvasSize.bind(this))
-            .then(this.addImage.bind(this));
-    }
-
     initCanvas() {
 
         let canvas;
 
         if (typeof this.state.canvas !== "object") {
+
+
             canvas = new window.fabric.Canvas('EditImage');
+
             let imageDOM = document.querySelector(".ImagePreview");
             this.setState({canvas, imageDOM});
+
+            ee.emit("canvas-init",canvas);
         }
 
         return null;
@@ -57,10 +63,10 @@ export default class ImagePreview extends React.Component {
     }
 
     setCanvasSize() {
-        let canvas = this.state.canvas;
-        canvas.setWidth(this.state.imageDOM.offsetWidth - 3); //Gotta find better solution
-        canvas.setHeight(this.state.imageDOM.offsetHeight);
 
+        let canvas = this.state.canvas;
+        canvas.setWidth(this.state.imageDOM.offsetWidth - 3); //Visual bug hot fix;
+        canvas.setHeight(this.state.imageDOM.offsetHeight);
         return null;
 
     }
@@ -68,9 +74,9 @@ export default class ImagePreview extends React.Component {
     addImage() {
 
         let img = new Image();
-        
+
         img.src = this.state.imageUrl;
-        
+
         img.onload = () => {
 
 
@@ -86,13 +92,14 @@ export default class ImagePreview extends React.Component {
             });
 
             this.state.canvas.add(imgInstance);
+            ee.emit("add-photo-to-canvas", imgInstance)
 
         };
 
 
     }
 
-    fitImageOnCanvas(img){
+    fitImageOnCanvas(img) {
 
         let imgHeight = img.naturalHeight;
         let imgWidth = img.naturalWidth;
@@ -109,6 +116,6 @@ export default class ImagePreview extends React.Component {
             fw = imgWidth * fh / imgHeight;
         }
 
-        return [fw,fh];
+        return [fw, fh];
     }
 }

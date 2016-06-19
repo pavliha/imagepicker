@@ -17,7 +17,14 @@ class EditPanel extends React.Component {
     componentDidMount(){
         ee.on("preview-image",()=>{
             this.setState({disabled:false})
-        })
+        });
+        ee.on("canvas-init",(canvas)=>{
+            this.setState({canvas})
+        });
+        ee.on("add-photo-to-canvas",(imgInstance)=>{
+            this.setState({imgInstance})
+
+        });
     }
     constructor(props) {
         super(props);
@@ -97,21 +104,13 @@ class EditPanel extends React.Component {
     }
 
     applyFilter(v) {
-        var img = document.querySelector("#EditImage");
-        if (img) {
-            Caman("#EditImage", function () {
-                this.revert(false);
 
-                if (v.brightness) this.brightness(v.brightness);
-                if (v.saturation) this.saturation(v.saturation);
-                if (v.exposure) this.exposure(v.exposure);
-                if (v.sepia) this.sepia(v.sepia);
-                if (v.hue) this.sepia(v.hue);
+        this.state.imgInstance.filters.push(
+            new fabric.Image.filters.Sepia(),
+            new fabric.Image.filters.Brightness({ brightness: 100 }));
 
-                this.render();
-            });
-
-        }
+        this.state.imgInstance.applyFilters(canvas.renderAll.bind(canvas));
+        this.state.canvas.add(img);
 
     }
 
