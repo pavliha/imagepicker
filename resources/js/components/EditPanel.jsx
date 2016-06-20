@@ -3,7 +3,7 @@ import React from "react";
 import Range from "./Range.jsx";
 import ArrowButton from "./ArrowButton.jsx";
 
-class EditPanel extends React.Component {
+export default class EditPanel extends React.Component {
 
     defaultState = {
         brightness: 0,
@@ -38,6 +38,7 @@ class EditPanel extends React.Component {
         return (
             <div className="EditPanel">
                 <ArrowButton/>
+                
                 <Range
                     disabled={this.state.disabled}
                     label="Яркость"
@@ -78,32 +79,37 @@ class EditPanel extends React.Component {
 
 
 
-    handleBrightness(e, value) {
-        this.setState({brightness: value});
+    handleBrightness(e) {
+        let canvas = this.state.canvas;
+        let img = this.state.imgInstance;
 
-        this.state.imgInstance.filters.push(
-            new fabric.Image.filters.Brightness({ brightness: value }));
-        this.state.imgInstance.applyFilters(this.state.canvas.renderAll.bind(this.state.canvas));
-        this.state.canvas.add(this.state.imgInstance);
+        this.setState({brightness: e.target.value});
+
+
+        canvas.clear();
+        img.filters.push(
+            new fabric.Image.filters.Brightness({ brightness: e.target.value }));
+        img.applyFilters(this.state.canvas.renderAll.bind(canvas));
+        canvas.add(img);
     }
 
-    handleSaturation(e, value) {
-        this.setState({saturation: value});
+    handleSaturation(e) {
+        this.setState({saturation: e.target.value});
         this.applyFilter(this.state);
     }
 
-    handleExposure(e, value) {
-        this.setState({exposure: value});
+    handleExposure(e) {
+        this.setState({exposure: e.target.value});
         this.applyFilter(this.state);
     }
 
-    handleSepia(e, value) {
-        this.setState({sepia: value});
+    handleSepia(e) {
+        this.setState({sepia: e.target.value});
         this.applyFilter(this.state);
     }
 
-    handleHue(e,value){
-        this.setState({hue: value});
+    handleHue(e){
+        this.setState({hue: e.target.value});
         this.applyFilter(this.state);
     }
 
@@ -122,5 +128,3 @@ class EditPanel extends React.Component {
     }
 
 }
-
-export default EditPanel;
