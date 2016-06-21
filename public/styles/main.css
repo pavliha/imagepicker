@@ -302,6 +302,10 @@ table {
   margin-top: 40px;
   width: 70%;
   height: 600px;
+  resize: both;
+  overflow: auto;
+}
+.ImagePreview .canvas-container {
   background-color: #f4f4f4;
 }
 .Range {

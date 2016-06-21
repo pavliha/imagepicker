@@ -14,6 +14,9 @@ export default class ImagePreview extends React.Component {
     componentWillMount() {
 
         ee.on('preview-image', (imageUrl)=>{
+
+
+
             this.setState({
                 imageUrl: imageUrl,
                 display: true,
@@ -22,7 +25,12 @@ export default class ImagePreview extends React.Component {
             loadScript("fabric.js")
                 .then(this.initCanvas.bind(this))
                 .then(this.setCanvasSize.bind(this))
-                .then(this.addImage.bind(this));
+                .then(this.addImage.bind(this))
+                .then((imgInstance)=>{
+                    let canvas = this.state.canvas;
+                    let filters = fabric.Image.filters;
+                    ee.emit("canvas-ready",{canvas,imgInstance,filters})
+                });
 
         });
     }
@@ -48,13 +56,11 @@ export default class ImagePreview extends React.Component {
 
         if (typeof this.state.canvas !== "object") {
 
-
             canvas = new window.fabric.Canvas('EditImage');
 
             let imageDOM = document.querySelector(".ImagePreview");
-            this.setState({canvas, imageDOM});
 
-            ee.emit("canvas-init",canvas);
+            this.setState({canvas, imageDOM});
         }
 
         return null;
@@ -72,28 +78,37 @@ export default class ImagePreview extends React.Component {
 
     addImage() {
 
-        let img = new Image();
 
-        img.src = this.state.imageUrl;
+        return new Promise((resolve)=>{
+            let canvas = this.state.canvas;
+            let img = new Image();
 
-        img.onload = () => {
+            img.src = this.state.imageUrl;
+
+            img.onload = () => {
 
 
-            let [width,height] = this.fitImageOnCanvas(img);
+                let [width,height] = this.fitImageOnCanvas(img);
 
-            var imgInstance = new fabric.Image(img, {
-                width: width,
-                height: height,
-                left: 0,
-                top: 0,
-                angle: 0,
-                opacity: 1,
-            });
+                var imgInstance = new fabric.Image(img, {
+                    width: width,
+                    height: height,
+                    left: 0,
+                    top: 0,
+                    angle: 0,
+                    opacity: 1,
+                });
 
-            this.state.canvas.add(imgInstance);
-            ee.emit("add-photo-to-canvas", imgInstance)
 
-        };
+                canvas.add(imgInstance);
+                canvas.centerObject(imgInstance);
+                canvas.renderAll();
+                canvas.setActiveObject(imgInstance);
+
+                resolve(imgInstance)
+            };
+
+        });
 
 
     }
