@@ -1,5 +1,6 @@
 import React from "react";
 import Range from "./Range.jsx";
+import Contrast from "../modules/FabricFilters";
 
 export default class EditPanel extends React.Component {
 
@@ -13,15 +14,16 @@ export default class EditPanel extends React.Component {
 
 
     componentDidMount() {
-        ee.on("preview-image", ()=> {
-            this.setState({disabled: false})
-        });
-        ee.on("canvas-ready", (obj)=> {
-            this.canvas = obj.canvas;
+
+        ee.on("canvas-ready", (fabric)=> {
+
+            this.setState({disabled: false});
+
+            this.canvas = fabric.canvas;
 
             console.log(this.canvas);
-            this.imgInstance = obj.imgInstance;
-            this.filters = obj.filters;
+            this.imgInstance = fabric.imgInstance;
+            this.filters = fabric.filters;
         });
 
     }
@@ -40,19 +42,20 @@ export default class EditPanel extends React.Component {
                     disabled={this.state.disabled}
                     label="Яркость"
                     value={this.state.brightness}
-                    onChange={this.handleBrightness.bind(this)}
+                    onChange={this.changeBrightness.bind(this)}
+                />
+                <Range
+                    disabled={this.state.disabled}
+                    label="Контраст"
+                    value={this.state.contrast}
+                    onChange={this.changeContrast.bind(this)}
                 />
             </div>
         );
     }
 
 
-    handleBrightness(e) {
 
-        this.changeBrightness(e);
-
-
-    }
 
     changeBrightness(e) {
         let canvas = this.canvas;
@@ -64,6 +67,17 @@ export default class EditPanel extends React.Component {
         this.applyFilter(5,new this.filters.Brightness({
                 brightness: parseInt(e.target.value, 10)
             }))
+    }
+
+    changeContrast(e) {
+        let canvas = this.canvas;
+        let img = this.imgInstance;
+
+        this.setState({contrast: e.target.value});
+
+        this.applyFilter(5,new Contrast({
+            contrast: parseInt(e.target.value, 10)
+        }))
     }
 
     applyFilter(index, filter) {

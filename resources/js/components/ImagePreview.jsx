@@ -7,14 +7,13 @@ export default class ImagePreview extends React.Component {
         this.state = {
             display: false,
             imageUrl: null,
-            imageDOM:null,
+            imageDOM: null,
         }
     }
 
     componentWillMount() {
 
-        ee.on('preview-image', (imageUrl)=>{
-
+        ee.on('preview-image', (imageUrl)=> {
 
 
             this.setState({
@@ -26,15 +25,17 @@ export default class ImagePreview extends React.Component {
                 .then(this.initCanvas.bind(this))
                 .then(this.setCanvasSize.bind(this))
                 .then(this.addImage.bind(this))
-                .then((imgInstance)=>{
-                    let canvas = this.state.canvas;
-                    let filters = fabric.Image.filters;
-                    ee.emit("canvas-ready",{canvas,imgInstance,filters})
-                });
+                .then(this.emitReadyEvent.bind(this));
 
         });
     }
 
+    emitReadyEvent(imgInstance) {
+        let canvas = this.state.canvas;
+        let filters = fabric.Image.filters;
+        ee.emit("canvas-ready", {canvas, imgInstance, filters})
+
+    }
 
     render() {
 
@@ -79,7 +80,7 @@ export default class ImagePreview extends React.Component {
     addImage() {
 
 
-        return new Promise((resolve)=>{
+        return new Promise((resolve)=> {
             let canvas = this.state.canvas;
             let img = new Image();
 

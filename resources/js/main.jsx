@@ -14,6 +14,9 @@ import EditPanel from "./components/EditPanel.jsx";
 
 window.ee = emitter(); //Initialize event emitter and listeners
 
+
+
+
 class Main extends React.Component {
 
 
@@ -42,7 +45,5 @@ class Main extends React.Component {
     }
 
 }
-
-//$('.materialboxed').materialbox();
 
 render(<Main />, document.getElementById("app"));

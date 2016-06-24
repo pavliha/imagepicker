@@ -1,5 +1,6 @@
 import React from "react";
 
+
 class Range extends React.Component {
 
     state = {
@@ -20,7 +21,7 @@ class Range extends React.Component {
                            disabled={this.props.disabled}
                            min={-50}
                            max={50}
-                           step={5}
+                           step={1}
                            value={this.props.value}
                            onChange={this.props.onChange}
                     />
